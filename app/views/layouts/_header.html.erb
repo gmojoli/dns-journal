@@ -1,0 +1,19 @@
+  <header id="header" class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns"> 
+        <%= link_to 'Home', home_index_path %>
+      </div>
+      <div class="small-8 columns">
+        <ul class="right">
+          <ul class="inline-list">
+            <li><%= link_to 'News', home_index_path, :class => 'header_black' %></li>
+            <li><%= link_to 'Contact', home_index_path, :class => 'header_black' %></li>
+            <li><%= link_to 'Download', home_index_path, :class => 'header_red' %></li>
+            <li><%= link_to 'Insert Code', home_index_path, :class => 'red_button' %></li>
+            <li><%= link_to "Login", new_user_session_path, :class => 'red_button' %></li>
+            <li class="divider"></li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+  </header>

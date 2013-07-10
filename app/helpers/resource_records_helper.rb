@@ -1,0 +1,2 @@
+module ResourceRecordsHelper
+end

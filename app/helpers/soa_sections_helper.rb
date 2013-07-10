@@ -1,0 +1,2 @@
+module SoaSectionsHelper
+end

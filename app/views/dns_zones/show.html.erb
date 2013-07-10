@@ -1,0 +1,145 @@
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
+<div id="dns_zone_section">
+  <p>
+    <strong>Domain:</strong>
+    <% if @dns_zone.domain %>
+    <%= link_to "#{@dns_zone.domain.name}", domain_path(@dns_zone.domain) %>
+    <% else %>
+    <em>not in use</em>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Admin email:</strong>
+    <%= @dns_zone.admin_email %>
+  </p>
+
+  <p>
+    <strong>Version:</strong>
+    <%= @dns_zone.version %>
+  </p>
+
+  <p>
+    <strong>Origin:</strong>
+    <%= @dns_zone.origin %>
+  </p>
+
+  <p>
+    <strong>Ttl:</strong>
+    <%= @dns_zone.ttl %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @dns_zone.description %>
+  </p>
+
+  <ul class="button-group">
+    <li><%= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), :class => "button small" %></li>
+    <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "button small" %></li>
+  </ul>
+</div>
+
+<div class="row">
+
+  <div id="soa_section" >
+    <fieldset>
+      <legend>Start of Authority (SOA)</legend>
+      <% if @dns_zone.soa_section %> 
+
+      <table>
+        <thead>
+          <tr>
+            <th>Primary Domain Name</th>
+            <th>Zone Class</th>
+            <th></th>
+            <th>Serial Number</th>
+            <th>Refresh</th>
+            <th>Retry</th>
+            <th>Expire</th>
+            <th>Negative Caching</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= "#{@dns_zone.soa_section.primary_domain_name}" %> </td>
+            <td><%= "#{@dns_zone.soa_section.zone_class}" %></td>
+            <td>SOA</td>
+            <td><%= "#{@dns_zone.soa_section.serial_number}" %></td>
+            <td><%= "#{@dns_zone.soa_section.refresh}" %></td>
+            <td><%= "#{@dns_zone.soa_section.retry}" %></td>
+            <td><%= "#{@dns_zone.soa_section.expire}" %></td>
+            <td><%= "#{@dns_zone.soa_section.negative_caching}" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <ul class="button-group">
+          <%= link_to 'Show', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section) , :class => "button small" %>
+          <%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "button small"  %>
+          <%= link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small"  %>
+        </ul>
+      </p>
+      <% else %>
+
+      <%= render 'soa_section_form' %>
+
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div id="rr_section" >
+    <fieldset>
+      <legend>Resource Records (RR)</legend>
+      <span data-tooltip class="has-tip" title='<%= ResourceRecord.definitions.to_s %>'>
+        <h3> ? </h3>
+      </span>
+      <% unless @dns_zone.resource_records.empty? %>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Option</th>
+            <th>Defining RFC</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dns_zone.resource_records.each do |rr| %>
+          <tr>
+            <td>IN</td>
+            <td><%= rr.name %></td>
+            <td>
+              <span data-tooltip class="has-tip" title='<%= ResourceRecord.tooltips[rr.resource_type] %>'>
+                <%= rr.resource_type %>
+              </span>
+            </td>
+            <td><%= rr.value %></td>
+            <td><%= rr.option %></td>
+            <td><%= rr.rfc %></td>
+            <td><%= rr.description %></td>
+            <td><%= link_to "#{rr.rfc}", "#{rr.link_rfc}" %></td>
+            <td><%= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), :class => "tiny button secondary"%> </td>
+            <td><%= link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }, :class => "tiny button alert" %> </td>
+
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+      <fieldset>
+        <legend> New Resource Record </legend>
+        <%= render 'rr_form' %>
+      </fieldset>
+    </fieldset>
+
+  </div>
+</div>
+<ul class="button-group">
+  <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "button small" %></li>
+</ul>

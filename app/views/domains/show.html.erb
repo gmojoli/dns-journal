@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @domain.name %>
+</p>
+
+<p>
+  <strong>Dns Zone (current):</strong>
+  <% if @domain.current_dns_zone %>
+  <%= link_to "#{@domain.dns_zone.origin}", domain_dns_zone_path(@domain,@domain.current_dns_zone)%> version <%= @domain.dns_zone.version %>
+  <% else %>
+  None selected
+  <% end %>
+</p>
+
+<fieldset id="domain_dns_zones">
+
+  <% if @domain.dns_zones.present? %>
+  <div id="dns_zones">
+    <table>
+      <thead>
+	<tr>
+	  <th>origin</th>
+	  <th>version</th>
+	  <th></th>
+	</tr>
+      </thead>
+
+      <tbody>
+
+	<% @domain.dns_zones.each do |dns_zone| %>
+	<tr>
+	  <td><%= dns_zone.origin %></td>
+	  <td><%= dns_zone.version %></td>
+	  <td class="button-group"><%= link_to 'Show', domain_dns_zone_path(@domain, dns_zone), :class => "button small" %> <%= link_to 'Use', {:controller => :domains, :action => :select_dns_zone, :dns_zone => dns_zone}, {:class => "button small"} %> <%= link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small" %></td?
+	</tr>
+	<% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+
+  <div>
+    <%= form_for [@domain, DnsZone.new] do |f| %>
+    <p>
+      <%= f.label :origin, "New dns zone: $ORIGIN" %><br/>
+      <%= f.text_field :origin %>
+    </p>
+    <p><%= f.submit "Add Dns Zone", :class => "button small" %></p>
+    <% end %>
+  </div>
+
+</fieldset>
+
+<ul class="button-group">
+  <li><%= link_to 'Edit', edit_domain_path(@domain), :class => "button small" %></li>
+  <li><%= link_to 'Back', domains_path, :class => "button small" %></li>
+</ul>

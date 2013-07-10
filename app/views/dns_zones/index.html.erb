@@ -1,0 +1,35 @@
+<h1>Listing dns_zones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin email</th>
+      <th>Version</th>
+      <th>Origin</th>
+      <th>Ttl</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dns_zones.each do |dns_zone| %>
+      <tr>
+        <td><%= dns_zone.admin_email %></td>
+        <td><%= dns_zone.version %></td>
+        <td><%= dns_zone.origin %></td>
+        <td><%= dns_zone.ttl %></td>
+        <td><%= dns_zone.description %></td>
+        <td><%= link_to 'Show', domain_dns_zone_path(dns_zone.domain, dns_zone) %></td>
+        <td><%= link_to 'Edit', edit_domain_dns_zone_path(dns_zone.domain, dns_zone) %></td>
+        <td><%= link_to 'Destroy', domain_dns_zone_path(dns_zone.domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dns zone', new_domain_dns_zone_path %>

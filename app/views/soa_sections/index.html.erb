@@ -1,0 +1,43 @@
+<h1>Listing soa_sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Primary domain name</th>
+      <th>Zone class</th>
+      <th>Mname</th>
+      <th>Rname</th>
+      <th>Serial number</th>
+      <th>Refresh</th>
+      <th>Retry</th>
+      <th>Expire</th>
+      <th>Negative caching</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @soa_sections.each do |soa_section| %>
+      <tr>
+        <td><%= soa_section.primary_domain_name %></td>
+        <td><%= soa_section.zone_class %></td>
+        <td><%= soa_section.mname %></td>
+        <td><%= soa_section.rname %></td>
+        <td><%= soa_section.serial_number %></td>
+        <td><%= soa_section.refresh %></td>
+        <td><%= soa_section.retry %></td>
+        <td><%= soa_section.expire %></td>
+        <td><%= soa_section.negative_caching %></td>
+        <td><%= link_to 'Show', soa_section %></td>
+        <td><%= link_to 'Edit', edit_soa_section_path(soa_section) %></td>
+        <td><%= link_to 'Destroy', soa_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Soa section', new_soa_section_path %>

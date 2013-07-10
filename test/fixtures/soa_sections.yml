@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  primary_domain_name: MyString
+  zone_class: MyString
+  mname: MyString
+  rname: MyString
+  serial_number: 1
+  refresh: 1
+  retry: 1
+  expire: 1
+  negative_caching: 1
+
+two:
+  primary_domain_name: MyString
+  zone_class: MyString
+  mname: MyString
+  rname: MyString
+  serial_number: 1
+  refresh: 1
+  retry: 1
+  expire: 1
+  negative_caching: 1

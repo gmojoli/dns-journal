@@ -1,0 +1,26 @@
+<%= form_for(@domain) do |f| %>
+  <% if @domain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@domain.errors.count, "error") %> prohibited this domain from being saved:</h2>
+
+      <ul>
+      <% @domain.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :name %><br>
+      <span data-tooltip class="has-tip" title="Name must be in domain format: http(s)://www.example.com" >
+        <%= f.text_field :name, :placeholder => "http://" %>
+      </span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit nil, class: "button small" %>
+  </div>
+<% end %>

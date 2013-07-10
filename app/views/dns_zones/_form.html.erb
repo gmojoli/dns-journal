@@ -1,0 +1,39 @@
+<%= form_for([@dns_zone.domain, @dns_zone]) do |f| %>
+  <% if @dns_zone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dns_zone.errors.count, "error") %> prohibited this dns_zone from being saved:</h2>
+
+      <ul>
+      <% @dns_zone.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :version %><br>
+    <%= @dns_zone.version %>
+  </div>
+  <div class="field">
+    $ORIGIN<br>
+    <span data-tooltip class="has-tip" title=" $ORIGIN must include the Top-Level domain name: example.com">
+      <%= f.text_field :origin %>
+    </span>
+  </div>
+  <div class="field">
+    <%= f.label :ttl %>(seconds)<br>
+    <%= f.number_field :ttl %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_email %><br>
+    <%= f.text_field :admin_email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

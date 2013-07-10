@@ -1,0 +1,77 @@
+class ResourceRecordsController < ApplicationController
+  before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  # load_and_authorize_resource
+  
+  # GET /resource_records
+  # GET /resource_records.json
+  def index
+    @resource_records = ResourceRecord.all
+  end
+
+  # GET /resource_records/1
+  # GET /resource_records/1.json
+  def show
+  end
+
+  # GET /resource_records/new
+  def new
+    @resource_record = ResourceRecord.new
+  end
+
+  # GET /resource_records/1/edit
+  def edit
+  end
+
+  # POST /resource_records
+  # POST /resource_records.json
+  def create
+    @dns_zone = DnsZone.find(params[:dns_zone_id])
+    @resource_record = ResourceRecord.new(resource_record_params)
+    @dns_zone.resource_records << @resource_record
+    respond_to do |format|
+      if @resource_record.save
+        format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), notice: 'Resource record was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @resource_record }
+      else
+        format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        format.json { render json: @resource_record.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /resource_records/1
+  # PATCH/PUT /resource_records/1.json
+  def update
+    respond_to do |format|
+      if @resource_record.update(resource_record_params)
+        format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        format.json { render json: @resource_record.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /resource_records/1
+  # DELETE /resource_records/1.json
+  def destroy
+    @resource_record.destroy
+    respond_to do |format|
+      format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone) }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+    def set_resource_record
+      @resource_record = ResourceRecord.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def resource_record_params
+      params.require(:resource_record).permit(:name, :resource_type, :value, :rfc, :description, :option)
+    end
+end

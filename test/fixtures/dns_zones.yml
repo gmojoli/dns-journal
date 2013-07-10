@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  admin_email: MyString
+  version: 1
+  origin: MyString
+  ttl: 1
+  description: MyText
+
+two:
+  admin_email: MyString
+  version: 1
+  origin: MyString
+  ttl: 1
+  description: MyText

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Primary domain name:</strong>
+  <%= @soa_section.primary_domain_name %>
+</p>
+
+<p>
+  <strong>Zone class:</strong>
+  <%= @soa_section.zone_class %>
+</p>
+
+<p>
+  <strong>Mname:</strong>
+  <%= @soa_section.mname %>
+</p>
+
+<p>
+  <strong>Rname:</strong>
+  <%= @soa_section.rname %>
+</p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @soa_section.serial_number %>
+</p>
+
+<p>
+  <strong>Refresh:</strong>
+  <%= @soa_section.refresh %>
+</p>
+
+<p>
+  <strong>Retry:</strong>
+  <%= @soa_section.retry %>
+</p>
+
+<p>
+  <strong>Expire:</strong>
+  <%= @soa_section.expire %>
+</p>
+
+<p>
+  <strong>Negative caching:</strong>
+  <%= @soa_section.negative_caching %>
+</p>
+
+<%= link_to 'Back', domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone) %>
+<%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section) %>
