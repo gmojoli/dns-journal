@@ -1,7 +1,29 @@
-@import "foundation/variables", "foundation/components/global", "foundation/components/buttons";
+/*@import "foundation/variables", "foundation/components/global", "foundation/components/buttons";*/
+@import 'foundation';
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 
-/* Using the default styles */
-.red_button { @include button-base; }
+@mixin header_font($color: black) {
+	font-family: 'Raleway', Helvetica, Arial, sans-serif;
+	font-size: 13px !important;
+	font-weight: normal;
+	font-style: normal;
+	color: $color !important;
+	line-height: 1.4;
+	top-margin: .2em;
+	bottom-margin: .2em;
+	text-rendering: optimizeLegibility;
+	vertical-align: middle !important;
+	padding: emCalc(17px);
+}
+
+@mixin red_button {
+	@include button-base;
+	$button-font-color: white !important;
+	$button-font-weight: normal;
+	@include header_font(white);
+	@include button($padding, $bg, $radius, $full-width, $disabled, $is-input);
+	padding: emCalc(7px) !important;
+}
 
 $page-width:    800px;
 $sidebar-width: 200px;
@@ -27,36 +49,52 @@ $is-input: false;
 
 /* Using the available options */
 .red_button {
-  @include button($padding, $bg, $radius, $full-width, $disabled, $is-input);
+	@include red_button;
+	@include header_font(white);
+}
+
+.login_button {
+	@include red_button;
+	@include header_font(white);
+	@include radius;
+	@include single-transition;
+	@include inset-shadow;
+	/*@include dropdown-button;*/
+	/*width: emCalc(150px);*/
+}
+
+.main_body {
+	background: url("background.png") repeat;
 }
 
 #header {
-  height: 70px;
-  background: #f5dfe6;
-  display: table-cell; 
-  vertical-align: middle; 
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+	height: 60px;
+	background: white;
+	display: table-cell; 
+	vertical-align: middle; 
+	text-align: center;
+	padding: emCalc(15px);
+	line-height: emCalc(15px);
 }
 
-@mixin header_font($color: black) {
-	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-	font-style: normal;
-	color: $color;
-	line-height: 1.4;
-	top-margin: .2em;
-	bottom-margin: .2em;
-	text-rendering: optimizeLegibility;
-	vertical-align: middle;
+a {
+  color: #ce4dd6;
+  &:hover { 
+  	color: #f24141 !important; 
+  	background: white !important;
+  }
+  &:visited { color: #c458cb; }
 }
 
 .header_black {
 	@include header_font;
+	font-weight: bold !important;
 }
 
 .header_red {
 	@include header_font(red);
+}
+
+.logo {
+	height: emCalc(55px);
 }
