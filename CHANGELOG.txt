@@ -1,13 +1,4 @@
-commit de853a47a5c99e5b8d93570cf617e846550692d1
-Author: zeroed <edd.rossi@gmail.com>
-Date:   Wed Jun 19 21:57:15 2013 +0200
-
-    dns-journal started
-
-...
-
-2013/06/24 - added validations
-
+=> 2013/06/24 - validations
 => 2013/06/27 - validation and routing in domain, dns_zone
 => 2013/06/29 - versioning of dns_zones
 => 2013/07/01 - validation and routing in soa_section, resource_record
@@ -17,6 +8,6 @@ Date:   Wed Jun 19 21:57:15 2013 +0200
 => 2013/07/05 - RR controller, manage all different kind of rr.
 => 2013/07/06 - instructions
 => 2013/07/12 - user login
-=> 2013/07/19 - js support
+=> 2013/07/19 - devise + cancan + rails_admin
 => 2013/07/26 - css and styles (Zurb Foundation)
 
