@@ -1,7 +1,7 @@
 class DnsZonesController < ApplicationController
   before_action :set_dns_zone, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   # GET /dns_zones
   # GET /dns_zones.json
@@ -67,11 +67,16 @@ class DnsZonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dns_zone
-      @dns_zone = DnsZone.find(params[:id])
+      unless @dns_zone = current_user.dns_zones.where(id: params[:id]).first
+        flash[:alert] = 'DnsZone not found.'
+        redirect_to domains_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dns_zone_params
-      params.require(:dns_zone).permit(:admin_email, :version, :origin, :ttl, :description)
+      params.require(:dns_zone).permit(:admin_email, :version, :origin, :ttl, :description).tap do |dns_zone_params|
+        dns_zone_params.merge!({:user_id => current_user.id})
+      end
     end
 end

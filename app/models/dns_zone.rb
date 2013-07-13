@@ -2,9 +2,12 @@ class DnsZone < ActiveRecord::Base
   include ActiveModel::Validations
 
   belongs_to :domain
+  belongs_to :user
   has_one :soa_section, :dependent => :destroy
   has_many :resource_records, :dependent => :destroy
   
+  validates :user_id, presence: true
+
   validates :origin, :presence => true
 
   # validates :origin, :uniqueness => { :scope => :version }

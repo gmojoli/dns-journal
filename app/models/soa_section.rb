@@ -1,5 +1,8 @@
 class SoaSection < ActiveRecord::Base
+  belongs_to :user
   belongs_to :dns_zone
+
+  validates :user_id, presence: true
   validates :primary_domain_name, :presence => true
   validates :serial_number, :refresh, :retry, :expire, :negative_caching, :numericality => { :only_integer => true }
 

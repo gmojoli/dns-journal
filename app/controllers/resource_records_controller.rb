@@ -1,7 +1,7 @@
 class ResourceRecordsController < ApplicationController
   before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   # GET /resource_records
   # GET /resource_records.json
@@ -27,7 +27,7 @@ class ResourceRecordsController < ApplicationController
   # POST /resource_records.json
   def create
     @dns_zone = DnsZone.find(params[:dns_zone_id])
-    @resource_record = ResourceRecord.new(resource_record_params)
+    @resource_record = ResourceRecord.new(resource_record_params.merge({:user_id => current_user.id}))
     @dns_zone.resource_records << @resource_record
     respond_to do |format|
       if @resource_record.save
@@ -67,7 +67,10 @@ class ResourceRecordsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
     def set_resource_record
-      @resource_record = ResourceRecord.find(params[:id])
+      unless @resource_record = current_user.resource_records.where(id: params[:id]).first
+        flash[:alert] = 'ResourceRecord not found.'
+        redirect_to domains_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

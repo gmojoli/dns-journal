@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130708201227) do
+ActiveRecord::Schema.define(version: 20130713150826) do
 
   create_table "dns_zones", force: true do |t|
     t.string   "admin_email"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(version: 20130708201227) do
     t.datetime "updated_at"
     t.integer  "soa_section_id"
     t.integer  "domain_id"
+    t.integer  "user_id"
   end
+
+  add_index "dns_zones", ["user_id"], name: "index_dns_zones_on_user_id"
 
   create_table "domains", force: true do |t|
     t.string   "name"
@@ -32,6 +35,8 @@ ActiveRecord::Schema.define(version: 20130708201227) do
     t.integer  "current_dns_zone"
     t.integer  "user_id"
   end
+
+  add_index "domains", ["user_id"], name: "index_domains_on_user_id"
 
   create_table "domains_dns_zones", force: true do |t|
     t.integer "domain_id"
@@ -48,7 +53,10 @@ ActiveRecord::Schema.define(version: 20130708201227) do
     t.string   "resource_type"
     t.string   "name"
     t.string   "option"
+    t.integer  "user_id"
   end
+
+  add_index "resource_records", ["user_id"], name: "index_resource_records_on_user_id"
 
   create_table "soa_sections", force: true do |t|
     t.string   "primary_domain_name"
@@ -64,7 +72,10 @@ ActiveRecord::Schema.define(version: 20130708201227) do
     t.datetime "updated_at"
     t.integer  "dns_zone_id"
     t.integer  "revision"
+    t.integer  "user_id"
   end
+
+  add_index "soa_sections", ["user_id"], name: "index_soa_sections_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

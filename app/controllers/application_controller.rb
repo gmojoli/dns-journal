@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   # cancan:
   # check_authorization
 
-  # https://github.com/ryanb/cancan/issues/835
   before_filter do
+    # https://github.com/ryanb/cancan/issues/835
     resource = controller_path.singularize.gsub('/', '_').to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)

@@ -1,7 +1,7 @@
 class SoaSectionsController < ApplicationController
   before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   # GET /soa_sections
   # GET /soa_sections.json
@@ -27,11 +27,11 @@ class SoaSectionsController < ApplicationController
   # POST /soa_sections.json
   def create
     @dns_zone = DnsZone.find(params[:dns_zone_id])
-    @soa_section = SoaSection.new(soa_section_params)
-    @dns_zone.soa_section = @soa_section
+    @soa_section = SoaSection.new(soa_section_params.merge({:user_id => current_user.id}))
 
     respond_to do |format|
       if @soa_section.save
+        @dns_zone.soa_section = @soa_section
         format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), notice: 'Soa section was successfully created.' }
         format.json { render action: 'show', status: :created, location: @soa_section }
       else
@@ -68,7 +68,10 @@ class SoaSectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_soa_section
-      @soa_section = SoaSection.find(params[:id])
+      unless @soa_section = current_user.soasections.where(id: params[:id]).first
+        flash[:alert] = 'SoaSection not found.'
+        redirect_to domains_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

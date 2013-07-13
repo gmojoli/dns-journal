@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   has_many :domains
+  has_many :dns_zones
+  has_many :soa_sections
+  has_many :resource_records
   
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
