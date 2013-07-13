@@ -14,9 +14,9 @@
       <tr>
         <td><%= domain.name %></td>
         <td class="button-group">
-          <%= link_to 'Show', domain, :class => "button small"  %>
-          <%= link_to 'Edit', edit_domain_path(domain), :class => "button small"  %>
-          <%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small"  %>
+          <%= link_to 'Show', domain, :class => "red_button"   %>
+          <%= link_to 'Edit', edit_domain_path(domain), :class => "red_button" %>
+          <%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"   %>
         </td>
       </tr>
       <% end %>
@@ -25,4 +25,4 @@
 <% end %>
 <br>
 
-<%= link_to 'New Domain', new_domain_path, {:class => "button small"} %>
+<%= link_to 'New Domain', new_domain_path, { :class => "red_button" } %>

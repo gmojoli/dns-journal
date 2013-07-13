@@ -22,9 +22,9 @@
         <td><%= dns_zone.origin %></td>
         <td><%= dns_zone.ttl %></td>
         <td><%= dns_zone.description %></td>
-        <td><%= link_to 'Show', domain_dns_zone_path(dns_zone.domain, dns_zone) %></td>
-        <td><%= link_to 'Edit', edit_domain_dns_zone_path(dns_zone.domain, dns_zone) %></td>
-        <td><%= link_to 'Destroy', domain_dns_zone_path(dns_zone.domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', domain_dns_zone_path(dns_zone.domain, dns_zone), :class => "red_button" %></td>
+        <td><%= link_to 'Edit', edit_domain_dns_zone_path(dns_zone.domain, dns_zone), :class => "red_button" %></td>
+        <td><%= link_to 'Destroy', domain_dns_zone_path(dns_zone.domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Dns zone', new_domain_dns_zone_path %>
+<%= link_to 'New Dns zone', new_domain_dns_zone_path, :class => "red_button"  %>

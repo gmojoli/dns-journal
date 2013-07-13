@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
  */
- 
- /* //= require foundation_and_overrides */
- 
+
 @import "foundation";
+@import "variables";
+@import url(http://fonts.googleapis.com/css?family=Raleway);

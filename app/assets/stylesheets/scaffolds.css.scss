@@ -1,15 +1,14 @@
+@import "variables";
+@import "mixins";
+
 body {
+  @include basic_font;
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  @include basic_font;
 }
 
 pre {
@@ -19,13 +18,13 @@ pre {
 }
 
 a {
-  color: #000;
-  &:visited {
-    color: #666;
+  color: black;
+  &:visited { 
+    color: black;
   }
-  &:hover {
-    color: #fff;
-    background-color: #000;
+  &:hover { 
+    color: #f24141 !important;
+    background: none !important;
   }
 }
 
@@ -33,6 +32,10 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
+
+button {
+  background: $bg !important;
 }
 
 #notice {

@@ -37,8 +37,8 @@
   </p>
 
   <ul class="button-group">
-    <li><%= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), :class => "button small" %></li>
-    <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "button small" %></li>
+    <li><%= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), :class => "red_button"  %></li>
+    <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"  %></li>
   </ul>
 </div>
 
@@ -77,9 +77,9 @@
       </table>
       <p>
         <ul class="button-group">
-          <%= link_to 'Show', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section) , :class => "button small" %>
-          <%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "button small"  %>
-          <%= link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small"  %>
+          <%= link_to 'Show', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button" %>
+          <%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button"   %>
+          <%= link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"   %>
         </ul>
       </p>
       <% else %>
@@ -141,5 +141,5 @@
   </div>
 </div>
 <ul class="button-group">
-  <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "button small" %></li>
+  <li><%= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"  %></li>
 </ul>

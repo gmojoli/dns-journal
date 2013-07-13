@@ -1,0 +1,35 @@
+@mixin basic_font($size: 12px) {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  font-size: $size !important;
+  line-height: 18px;
+}
+
+@mixin header_font($color: black) {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  font-size: 13px !important;
+  font-weight: normal;
+  font-style: normal;
+  color: $color !important;
+  line-height: 1.4;
+  top-margin: .2em;
+  bottom-margin: .2em;
+  text-rendering: optimizeLegibility;
+  vertical-align: middle !important;
+  font-weight: bold !important;
+  padding: emCalc(17px);
+}
+
+@mixin red_button {
+  @include button-base;
+  $button-font-color: white !important;
+  $button-font-weight: normal;
+  @include basic_font(10px);
+  @include button($padding, $bg, $radius, $full-width, $disabled, $is-input);
+  padding: emCalc(7px) !important;
+  @include single-transition;
+  @include inset-shadow($active);
+  &:hover { 
+    color: darken(white, 15%) !important;
+    background: darken($bg, 15%) !important;
+  }
+}

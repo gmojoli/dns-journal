@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @domain.name %>
@@ -34,7 +31,7 @@
 	<tr>
 	  <td><%= dns_zone.origin %></td>
 	  <td><%= dns_zone.version %></td>
-	  <td class="button-group"><%= link_to 'Show', domain_dns_zone_path(@domain, dns_zone), :class => "button small" %> <%= link_to 'Use', {:controller => :domains, :action => :select_dns_zone, :dns_zone => dns_zone}, {:class => "button small"} %> <%= link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button small" %></td?
+	  <td class="button-group"><%= link_to 'Show', domain_dns_zone_path(@domain, dns_zone), :class => "red_button"  %> <%= link_to 'Use', {:controller => :domains, :action => :select_dns_zone, :dns_zone => dns_zone}, { :class => "red_button" } %> <%= link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"  %></td?
 	</tr>
 	<% end %>
       </tbody>
@@ -48,13 +45,13 @@
       <%= f.label :origin, "New dns zone: $ORIGIN" %><br/>
       <%= f.text_field :origin %>
     </p>
-    <p><%= f.submit "Add Dns Zone", :class => "button small" %></p>
+    <p><%= f.submit "Add Dns Zone", :class => "red_button"  %></p>
     <% end %>
   </div>
 
 </fieldset>
 
 <ul class="button-group">
-  <li><%= link_to 'Edit', edit_domain_path(@domain), :class => "button small" %></li>
-  <li><%= link_to 'Back', domains_path, :class => "button small" %></li>
+  <li><%= link_to 'Edit', edit_domain_path(@domain), :class => "red_button" %></li>
+  <li><%= link_to 'Back', domains_path, :class => "red_button" %></li>
 </ul>

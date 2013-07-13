@@ -1,0 +1,52 @@
+@import 'foundation';
+@import 'variables';
+@import 'mixins';
+
+.red_button {
+  @include red_button;
+  @include header_font(white);
+}
+
+.login_button {
+  @include red_button;
+  @include header_font(white);
+  @include radius;
+  @include single-transition;
+  @include inset-shadow;
+  /*@include dropdown-button;*/
+  /*width: emCalc(150px);*/
+}
+
+.main_body {
+  background: url("background.png") repeat;
+}
+
+#header {
+  height: 60px;
+  background: white;
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center;
+  padding: emCalc(15px);
+  line-height: emCalc(15px);
+}
+
+.header_black {
+  @include header_font;
+}
+
+.header_red {
+  @include header_font(red);
+}
+
+.logo {
+  height: emCalc(55px);
+}
+
+/*https://github.com/zurb/foundation/blob/master/scss/foundation/components/_buttons.scss#L109*/
+
+/*@mixin button-style($bg:$primary-color, $radius:false, $disabled:false) {
+  ...
+    &:hover,
+    &:focus { background-color: lighten($bg, $button-function-factor);
+  ... }*/

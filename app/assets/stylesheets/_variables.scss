@@ -1,0 +1,27 @@
+@import 'foundation';
+
+$page-width:    800px;
+$sidebar-width: 200px;
+$primary-color: #f24141;
+
+/* This controls padding around the buttons. Use a variable or em value */
+$padding: $button-med;
+
+/* This controls button color. Set to one of our variables or a custom hex value */
+$bg: $primary-color;
+
+/* This controls button radius. Set to a variable, true/false, or custom px value */
+$radius: true;
+
+/* This whether button is full-width. Set to true or false */
+$full-width: false;
+
+/* This controls whether disabled styles are used. Set to true or false */
+$disabled: false;
+
+/* This controls padding for inputs, they are a little different */
+$is-input: false;
+
+/* This controls whether or not you get the depressed look on tap/click. */
+/* Set to true or false, defaults to true. */
+$active: true;
