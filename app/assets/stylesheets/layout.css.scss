@@ -15,3 +15,7 @@
 .menu {
   @include side-nav;
 }
+
+label.right {
+  /*padding-right: 10px !important;*/
+}

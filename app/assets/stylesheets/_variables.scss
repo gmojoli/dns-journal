@@ -25,3 +25,7 @@ $is-input: false;
 /* This controls whether or not you get the depressed look on tap/click. */
 /* Set to true or false, defaults to true. */
 $active: true;
+
+$default-float: left;
+
+$column-gutter: emCalc(60px);
