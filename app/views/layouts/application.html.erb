@@ -24,35 +24,44 @@
 
   <%= render 'layouts/header' %>
 
-  <div class="row">
-    <div class="small-8 columns">
-      <%= yield %>
-    </div>
+  <div class="wrapper">
+    <div class="row">
+      <div class="small-8 columns">
+        <%= yield %>
+      </div>
 
-    <div class="small-2 columns">
-      <p class="navbar-text pull-right">
-        <% if notice.present? || alert.present? %>
-          <div class="panel">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-          </div>
-        <% end %>
-      </p>
-      <p class="navbar-text pull-right">
-        <div class="panel">
-          <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-          <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <div class="small-3 offset-large-1 columns" style="text-align: center">
+        <p class="navbar-text pull-right">
+          <% if notice.present? || alert.present? %>
+            <div class="panel">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+            </div>
           <% end %>
-        </div>
-      </p>
+        </p>
+        <p class="navbar-text pull-right">
+          <div class="panel">
+            <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
+          </div>
+        </p>
+      </div>
     </div>
+    
+    <div class="push"></div>
+    
   </div>
-
+  
+  <div class="footer">
+    <%= render 'layouts/footer' %>
+  </div>
+  
   <%= javascript_include_tag "application" %>
 </body>
 </html>

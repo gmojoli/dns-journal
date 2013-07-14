@@ -1,6 +1,25 @@
 @import "variables";
 @import "mixins";
 
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -62px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+  height: 62px; /* .push must be the same height as .footer */
+}
+
 body {
   @include basic_font;
   background-color: #fff;
@@ -38,8 +57,12 @@ button {
   background: $bg !important;
 }
 
-#notice {
-  color: green;
+p.notice {
+  color: green !important;
+}
+
+p.alert {
+  color: red !important;
 }
 
 .field_with_errors {

@@ -21,7 +21,11 @@
   background: url("background.png") repeat;
 }
 
-#header {
+#body {
+  width: 100%
+}
+
+#header, #footer {
   height: 60px;
   background: white;
   display: table-cell; 
@@ -50,3 +54,5 @@
     &:hover,
     &:focus { background-color: lighten($bg, $button-function-factor);
   ... }*/
+
+

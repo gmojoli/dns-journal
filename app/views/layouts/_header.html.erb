@@ -3,16 +3,21 @@
       <div class="small-2 columns"> 
         <%= link_to image_tag('logo.png', :class => 'logo'), home_index_path %>
       </div>
-      <div class="small-8 columns">
+      <div class="small-10 columns">
 
-        <ul class="inline-list">
-          <li><h6><%= link_to 'News', home_index_path, :class => 'header_black' %></h6></li>
-          <li><h6><%= link_to 'Contact', home_index_path, :class => 'header_black' %></h6></li>
-          <li><h6><%= link_to 'Download', home_index_path, :class => 'header_red' %></h6></li>
-          <li class="divider"></li>
-          
-          <li><%= link_to 'Insert Code', home_index_path, :class => 'red_button' %></li>
-          <li><%= link_to "Login", new_user_session_path, :class => 'login_button' %></li>
+        <div class="small-6 large-offset-2 columns" style='vertical-align: middle;margin-top: 10px;' >
+          <ul class="inline-list">
+            <li><h6><%= link_to 'News', home_index_path, :class => 'header_black' %></h6></li>
+            <li><h6><%= link_to 'Contact', home_index_path, :class => 'header_black' %></h6></li>
+            <li><h6><%= link_to 'Download', home_index_path, :class => 'header_red' %></h6></li>
+            <li class="divider"></li>
+          </ul>          
+        </div>
+
+        <div class="small-4 columns">
+          <ul class="inline-list">
+            <li><h6><%= link_to 'Insert Code', home_index_path, :class => 'red_button' %></h6></li>
+            <li><h6><%= link_to "Login", new_user_session_path, :class => 'login_button' %></h6></li>
           <li class="divider"></li>
         </ul>
 
