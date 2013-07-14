@@ -1,4 +1,5 @@
 <%= simple_form_for [@dns_zone.domain, @dns_zone, @resource_record = ResourceRecord.new] do |f| %>
+
   <% if @resource_record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource_record.errors.count, "error") %> prohibited this resource_record from being saved:</h2>
@@ -10,28 +11,64 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="row">
+    <div class="large-3 columns">
+      <%= f.label :resource_type, class: "right inline" %>
+    </div>
+    <div class="large-3 columns left">
+      <%= select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true}) %>
+    </div>
+    <div class="large-3 columns">
+      <span data-tooltip class="has-tip" title="an MX require a priority value">
+        <%= f.label :option, class: "right inline" %>
+      </span>
+    </div>
+    <div class="large-3 columns">
+        <%= f.number_field :option %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :resource_type %><br>
-    <%= select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true}) %>
+  <div class="row">
+    <div class="large-3 columns">
+      <%= f.label :name, class: "right inline" %>
+    </div>
+    <div class="large-9 columns">
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.number_field :name %>
+
+  <div class="row">
+    <div class="large-3 columns">
+      <%= f.label :value, class: "right inline" %>
+    </div>
+    <div class="large-9 columns">
+      <%= f.text_field :value %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :value %><br>
-    <%= f.number_field :value %>
+
+  <div class="row">
+    <div class="large-3 columns">
+      <%= f.label :option, class: "right inline" %>
+    </div>
+    <div class="large-9 columns">
+      <%= f.number_field :option %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :option %><br>
-    <%= f.number_field :option %>
+
+  <div class="row">
+    <div class="large-3 columns">
+      <%= f.label :description, class: "right inline" %>
+    </div>
+    <div class="large-9 columns">
+      <%= f.text_area :description %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+
+  <div class="row">
+    <div class="large-3 columns large-offset-3">
+      <%= f.submit "Save", :class => "red_button" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit nil, :class => "red_button" %>
-  </div>
+
 <% end %>
