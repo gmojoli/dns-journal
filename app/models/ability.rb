@@ -38,7 +38,8 @@ class Ability
       can :crud, Domain, :user_id => user.id
       can :select_dns_zone, Domain, :user_id => user.id
       
-      # refer to Domain...
+      # can :crud DnsZone, :domain => { :user_id => user.id }
+
       can :crud, DnsZone, :user_id => user.id
       can :crud, SoaSection, :user_id => user.id
       can :crud, ResourceRecord, :user_id => user.id
