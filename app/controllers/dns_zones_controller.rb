@@ -1,7 +1,8 @@
 class DnsZonesController < ApplicationController
   before_action :set_dns_zone, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource :domain
+  load_and_authorize_resource :dns_zone, :through => :domain
   
   # GET /dns_zones
   # GET /dns_zones.json
