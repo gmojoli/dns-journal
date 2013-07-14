@@ -48,9 +48,11 @@ end
 gem 'rb-readline', '~>0.5.0', require: 'readline'
 
 # http://foundation.zurb.com/docs/
-# gem 'compass-rails' #, github: "milgner/compass-rails", branch: "rails4"
+# gem 'compass-rails' #, github: 'milgner/compass-rails', branch: 'rails4'
 gem 'zurb-foundation' #, '~> 4.0.0'
 
 gem 'devise', :github => 'plataformatec/devise', :branch => 'rails4'
 
-gem "cancan"
+gem 'cancan'
+
+gem 'simple_form'
