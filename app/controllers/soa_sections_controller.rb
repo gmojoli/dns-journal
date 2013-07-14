@@ -68,7 +68,7 @@ class SoaSectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_soa_section
-      unless @soa_section = current_user.soasections.where(id: params[:id]).first
+      unless @soa_section = current_user.soa_sections.where(id: params[:id]).first
         flash[:alert] = 'SoaSection not found.'
         redirect_to domains_url
       end
