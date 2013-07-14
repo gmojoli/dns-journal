@@ -56,3 +56,6 @@ gem 'devise', :github => 'plataformatec/devise', :branch => 'rails4'
 gem 'cancan'
 
 gem 'simple_form'
+
+gem 'cucumber'
+gem 'cucumber-rails'
