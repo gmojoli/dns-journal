@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130713150826) do
+ActiveRecord::Schema.define(version: 20130714081431) do
 
   create_table "dns_zones", force: true do |t|
     t.string   "admin_email"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20130713150826) do
     t.datetime "updated_at"
     t.integer  "current_dns_zone"
     t.integer  "user_id"
+    t.text     "note"
   end
 
   add_index "domains", ["user_id"], name: "index_domains_on_user_id"
