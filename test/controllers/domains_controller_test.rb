@@ -46,4 +46,13 @@ class DomainsControllerTest < ActionController::TestCase
 
     assert_redirected_to domains_path
   end
+
+  # test "should create post" do
+  #   assert_difference('Post.count') do
+  #     post :create, post: {title: 'Hi', body: 'This is my first post.'}
+  #   end
+  #   assert_redirected_to post_path(assigns(:post))
+  #   assert_equal 'Post was successfully created.', flash[:notice]
+  # end
+  
 end

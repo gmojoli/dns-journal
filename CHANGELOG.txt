@@ -12,3 +12,4 @@
 => 2013/07/26 - css and styles (Zurb Foundation), simple_form
 => 2013/07/30 - export zone file
 
+=> ... full coverage test
