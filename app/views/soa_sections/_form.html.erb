@@ -1,4 +1,4 @@
-<%= form_for [@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section] do |f| %>
+<%= simple_form_for [@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section] do |f| %>
 
   <% if @soa_section.errors.any? %>
     <div id="error_explanation">

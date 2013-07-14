@@ -45,5 +45,5 @@
   <%= @soa_section.negative_caching %>
 </p>
 
-<%= link_to 'Back', domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone) %>
-<%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section) %>
+<%= link_to 'Back', domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone), :class => "red_button" %>
+<%= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section), :class => "red_button"  %>

@@ -1,4 +1,4 @@
-<%= form_for([@dns_zone.domain, @dns_zone]) do |f| %>
+<%= simple_form_for([@dns_zone.domain, @dns_zone]) do |f| %>
   <% if @dns_zone.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@dns_zone.errors.count, "error") %> prohibited this dns_zone from being saved:</h2>

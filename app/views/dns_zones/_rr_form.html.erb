@@ -1,4 +1,4 @@
-<%= form_for [@dns_zone.domain, @dns_zone, @resource_record = ResourceRecord.new] do |f| %>
+<%= simple_form_for [@dns_zone.domain, @dns_zone, @resource_record = ResourceRecord.new] do |f| %>
   <% if @resource_record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource_record.errors.count, "error") %> prohibited this resource_record from being saved:</h2>

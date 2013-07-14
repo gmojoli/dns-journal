@@ -40,7 +40,7 @@
   <% end %>
 
   <div>
-    <%= form_for [@domain, DnsZone.new] do |f| %>
+    <%= simple_form_for [@domain, DnsZone.new] do |f| %>
     <p>
       <%= f.label :origin, "New dns zone: $ORIGIN" %><br/>
       <%= f.text_field :origin %>
