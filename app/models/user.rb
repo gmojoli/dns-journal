@@ -6,11 +6,13 @@ class User < ActiveRecord::Base
   has_many :dns_zones
   has_many :soa_sections
   has_many :resource_records
+
+  has_and_belongs_to_many :roles
   
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
   def admin?
-  	false # TODO: implement roles
+  	roles.map(&:name).include? 'admin'
   end
 end

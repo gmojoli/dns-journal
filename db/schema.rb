@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130714081431) do
+ActiveRecord::Schema.define(version: 20130714094258) do
 
   create_table "dns_zones", force: true do |t|
     t.string   "admin_email"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20130714081431) do
   end
 
   add_index "resource_records", ["user_id"], name: "index_resource_records_on_user_id"
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
 
   create_table "soa_sections", force: true do |t|
     t.string   "primary_domain_name"
