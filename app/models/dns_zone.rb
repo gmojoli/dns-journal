@@ -13,7 +13,7 @@ class DnsZone < ActiveRecord::Base
   # validates :origin, :uniqueness => { :scope => :version }
   # validates_uniqueness_of :origin, :scope => :version, :case_sensitive => false?
   # validates :origin, :uniqueness => true, :unless => :already_existing?
-  validates :origin, :uniqueness => true, :if => :first?
+  validates :origin, :uniqueness => { :if => :first?, :scope => :user }
 
   validates :ttl, :numericality => { :only_integer => true }, :allow_nil => true
   validates :admin_email, :email => true, :allow_nil => true#, :message => "invalid email"
@@ -21,6 +21,7 @@ class DnsZone < ActiveRecord::Base
 
   scope :max_version, -> { DnsZone.where(:origin => origin).order("version DESC").first }  
   scope :last, -> { DnsZone.where(:origin => origin).order( "updated_at DESC" ).first }
+  scope :owned_by, ->(user_id) { where(user_id: user_id) }
 
   after_initialize :init
 
@@ -40,5 +41,4 @@ class DnsZone < ActiveRecord::Base
   def first?
     version == 1
   end
-
 end
