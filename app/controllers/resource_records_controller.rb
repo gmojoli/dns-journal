@@ -45,7 +45,7 @@ class ResourceRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @resource_record.update(resource_record_params)
-        format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone) }
+        format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), notice: 'Resource record was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
