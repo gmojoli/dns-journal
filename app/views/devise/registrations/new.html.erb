@@ -1,43 +1,52 @@
 <h2>Sign up</h2>
 <hr />
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="row">
-    <div class="large-3 columns">
-      <%= f.label :email, class: "right inline" %>
-    </div>
-    <div class="large-9 columns">
-      <%= f.email_field :email, :autofocus => true %>
-    </div>
+<%= devise_error_messages! %>
+
+<div class="row">
+  <div class="large-6 columns">
+    <%= f.label :name %>
+
+    <%= f.text_field :name %>
+  </div>
+  <div class="large-6 columns">
+    <%= f.label :surname%>
+
+    <%= f.text_field :surname %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.label :email %>
+
+    <%= f.email_field :email, :autofocus => true %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <%= f.label :password, class: "left inline" %>
+
+    <%= f.password_field :password %>
   </div>
 
-  <div class="row">
-    <div class="large-3 columns">
-      <%= f.label :password, class: "right inline" %>
-    </div>
-    <div class="large-9 columns">
-      <%= f.password_field :password %>
-    </div>
-  </div>
+  <div class="large-6 columns">
+    <%= f.label :password_confirmation, class: "left inline" %>
 
-  <div class="row">
-    <div class="large-3 columns">
-      <%= f.label :password_confirmation, class: "right inline" %>
-    </div>
-    <div class="large-9 columns">
-      <%= f.password_field :password_confirmation %>
-    </div>
+    <%= f.password_field :password_confirmation %>
   </div>
+</div>
 
-  <div class="row">
-    <div class="large-3 columns large-offset-3">
-      <%= f.submit "Sign up", :class => "red_button" %>
-    </div>
+<div class="row">
+  <div class="large-3 columns">
+    <%= f.submit "Sign up", :class => "red_button" %>
   </div>
-  <div class="row">
-    <div class="large-6 columns">
-      <%= render "devise/shared/links" %>
-    </div>
+</div>
+<div class="row">
+  <div class="large-6 columns">
+    <%= render "devise/shared/links" %>
   </div>
+</div>
 <% end %>
 

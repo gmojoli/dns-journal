@@ -47,6 +47,10 @@
   height: emCalc(55px);
 }
 
+label.right {
+  padding-right: 10px;
+}
+
 /*https://github.com/zurb/foundation/blob/master/scss/foundation/components/_buttons.scss#L109*/
 
 /*@mixin button-style($bg:$primary-color, $radius:false, $disabled:false) {
