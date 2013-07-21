@@ -57,5 +57,25 @@ gem 'cancan'
 
 gem 'simple_form'
 
-gem 'cucumber'
-gem 'cucumber-rails'
+group :development do
+  gem 'habtm_generator'
+  gem 'better_errors'
+  gem 'guard-rspec'
+  gem 'pry-rails'
+  gem 'terminal-notifier-guard'
+end
+
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem "shoulda-matchers"
+  gem "capybara"
+  gem "pry"
+  gem "ffaker"
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+end
+
+# gem 'rails-admin', :git => 'git://github.com/sferik/rails_admin.git'
