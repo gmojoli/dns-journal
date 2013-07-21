@@ -8,8 +8,10 @@
 => 2013/07/05 - RR controller, manage all different kind of rr.
 => 2013/07/06 - instructions
 => 2013/07/12 - user login, ownership and roles
-=> 2013/07/19 - devise + cancan + rails_admin
-=> 2013/07/26 - css and styles (Zurb Foundation), simple_form
-=> 2013/07/30 - export zone file
+			  - fix: change version
+			  - feature: export
+=> 2013/07/28 - devise + cancan + rails_admin
+=> 2013/08/04 - css and styles (Zurb Foundation), simple_form
+=> 2013/08/11 - export zone file
 
 => ... full coverage test
