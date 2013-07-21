@@ -77,6 +77,15 @@ class DomainsController < ApplicationController
     end
   end
 
+  def export_zone(dns_zone_id)
+    dns_zone = DnsZone.find(dns_zone_id)
+    file_content = "$ORIGIN: #{dns_zone.origin}. TTL: #{dns_zone.ttl} ;"
+    file_content.concat "\n#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name}. (#{dns_zone.soa_section.serial_number} #{dns_zone.soa_section.refresh} #{dns_zone.soa_section.retry} #{dns_zone.soa_section.expire} #{dns_zone.soa_section.negative_caching}) ;"
+    dns_zone.resource_records.each do |rr| 
+      file_content.concat "\n#{rr.name} IN #{rr.type} #{rr.value} #{rr.option || ''} ;"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_domain
