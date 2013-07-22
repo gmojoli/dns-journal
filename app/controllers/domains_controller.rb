@@ -1,3 +1,5 @@
+require 'tempfile'
+
 class DomainsController < ApplicationController
   before_action :set_domain, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
@@ -77,13 +79,22 @@ class DomainsController < ApplicationController
     end
   end
 
-  def export_zone(dns_zone_id)
-    dns_zone = DnsZone.find(dns_zone_id)
+  def export_zone
+    dns_zone = DnsZone.find(params[:dns_zone_id])
     file_content = "$ORIGIN: #{dns_zone.origin}. TTL: #{dns_zone.ttl} ;"
-    file_content.concat "\n#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name}. (#{dns_zone.soa_section.serial_number} #{dns_zone.soa_section.refresh} #{dns_zone.soa_section.retry} #{dns_zone.soa_section.expire} #{dns_zone.soa_section.negative_caching}) ;"
+    file_content.concat "\n#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name}. (#{dns_zone.soa_section.serial_number} #{dns_zone.soa_section.refresh} #{dns_zone.soa_section.retry} #{dns_zone.soa_section.expire} #{dns_zone.soa_section.negative_caching}) ;" if dns_zone.soa_section
     dns_zone.resource_records.each do |rr| 
-      file_content.concat "\n#{rr.name} IN #{rr.type} #{rr.value} #{rr.option || ''} ;"
+      file_content.concat "\n#{rr.name} IN #{rr.resource_type} #{rr.value} #{rr.option || ''} ;"
     end
+    # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
+    #   f.print file_content
+    #   f.flush
+    # end
+    send_data( file_content, :filename => "#{@domain.name}.txt" )
+    flash[:notice] = 'File exported'
+  rescue
+    flash[:alert] = 'something went wrong...' #TODO
+    raise
   end
 
   private

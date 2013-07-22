@@ -17,7 +17,8 @@ DnsJournal::Application.routes.draw do
     end #, :only => [:create, :destroy]
   end
 
-  get '/domains/:id/:action/:dns_zone' => 'domains#select_dns_zone'
+  get '/domains/:id/export/:dns_zone_id' => 'domains#export_zone', as: :export
+  get '/domains/:id/select/:dns_zone' => 'domains#select_dns_zone', as: :select
 
   root 'home#index'
 

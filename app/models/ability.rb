@@ -37,6 +37,7 @@ class Ability
     else
       can :crud, Domain, :user_id => user.id
       can :select_dns_zone, Domain, :user_id => user.id
+      can :export_zone, Domain, :user_id => user.id
       
       # can :crud DnsZone, :domain => { :user_id => user.id }
 
