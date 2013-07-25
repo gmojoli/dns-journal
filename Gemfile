@@ -65,11 +65,6 @@ group :development do
   gem 'terminal-notifier-guard'
 end
 
-group :test do
-  gem 'cucumber'
-  gem 'cucumber-rails'
-end
-
 group :development, :test do
   gem 'rspec-rails'
   gem "shoulda-matchers"
@@ -78,6 +73,8 @@ group :development, :test do
   gem "ffaker"
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  # gem 'cucumber'
+  gem 'cucumber-rails'
 end
 
 # gem 'rails-admin', :git => 'git://github.com/sferik/rails_admin.git'
