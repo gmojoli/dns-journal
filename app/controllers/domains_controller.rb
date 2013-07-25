@@ -91,7 +91,7 @@ class DomainsController < ApplicationController
     #   f.flush
     # end
     send_data( file_content, :filename => "#{@domain.name}.txt" )
-    flash[:notice] = 'File exported'
+    flash[:notice] = 'file exported'
   rescue
     flash[:alert] = 'something went wrong...' #TODO
     raise

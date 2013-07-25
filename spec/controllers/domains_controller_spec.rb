@@ -1,14 +1,5 @@
 require 'spec_helper'
 
-FactoryGirl.define do
-  factory :dns_zone do
-    origin 'foo'
-  end
-  factory :domain do
-    name 'foo'
-  end
-end
-
 describe DomainsController do
 
   # TODO
@@ -29,10 +20,10 @@ describe DomainsController do
       let(:data_options) { {filename: "data.txt", disposition: 'attachment', type: 'text/plain; charset=utf-8; header=present'} }
 
       before { controller.stub(:authenticate_user!).and_return true }
+      before { controller.stub(:current_user).and_return user }
       it "should return a txt attachment" do
-        #subject.should_receive(:export_zone).and_return { true } #.with_params(...)
         get :export_zone, :id => domain.id, :dns_zone_id => dns_zone.id
-        flash[:notice].should eql("its a good thing!")
+        flash[:notice].should eql("file exported")
       end
     end
   end
