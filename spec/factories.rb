@@ -31,4 +31,14 @@ FactoryGirl.define do
   factory :role do
     name
   end
+
+  factory :domain do
+    name 'foo'
+  end
+
+  factory :dns_zone do
+    origin 'foo'
+    user { create(:user) }
+    domain { create(:domain, :name => 'example.com', :user => user) }
+  end
 end

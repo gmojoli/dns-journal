@@ -41,4 +41,14 @@ class DnsZone < ActiveRecord::Base
   def first?
     version == 1
   end
+
+  def deep_clone
+    new_dns_zone = self.dup
+    new_dns_zone.soa_section = self.soa_section.dup if self.soa_section
+    Array(self.resource_records).each do |rr|
+      new_dns_zone.resource_records << rr.dup
+    end
+    new_dns_zone
+  end
+
 end
