@@ -42,7 +42,7 @@ class DnsZonesController < ApplicationController
     respond_to do |format|
       zone = @dns_zone.deep_clone
       if (zone.update(dns_zone_params.merge( {:version => @dns_zone.new_version} ))) && zone.valid?
-        @dns_zone.domain.dns_zones << zone save
+        @dns_zone.domain.dns_zones << zone.save
         @dns_zone.domain.save
         format.html { redirect_to @dns_zone.domain, notice: 'Dns zone was successfully updated.' }
         format.json { head :no_content }
