@@ -74,7 +74,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   # gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
+  gem 'webrat'
 end
 
 # gem 'rails-admin', :git => 'git://github.com/sferik/rails_admin.git'
