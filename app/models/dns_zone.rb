@@ -48,6 +48,7 @@ class DnsZone < ActiveRecord::Base
     Array(self.resource_records).each do |rr|
       new_dns_zone.resource_records << rr.dup
     end
+    binding.pry
     new_dns_zone
   end
 

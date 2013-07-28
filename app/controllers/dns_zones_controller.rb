@@ -42,12 +42,13 @@ class DnsZonesController < ApplicationController
     respond_to do |format|
       zone = @dns_zone.deep_clone
       if (zone.update(dns_zone_params.merge( {:version => @dns_zone.new_version} ))) && zone.valid?
-        @dns_zone.domain.dns_zones << zone.save
+        zone.save!
+        @dns_zone.domain.dns_zones << zone
         @dns_zone.domain.save
         format.html { redirect_to @dns_zone.domain, notice: 'Dns zone was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @dns_zone.domain, alert: "Dns zone validation failed. #{zone.errors.messages}" }
+        format.html { redirect_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Dns zone validation failed. #{zone.errors.messages}" }
         format.json { render json: @dns_zone.errors, status: :unprocessable_entity }
       end
     end
@@ -78,7 +79,7 @@ class DnsZonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dns_zone_params
-      params.require(:dns_zone).permit(:admin_email, :version, :origin, :ttl, :description).tap do |dns_zone_params|
+      params.require(:dns_zone).permit(:admin_email, :version, :origin, :ttl, :description, :user_id).tap do |dns_zone_params|
         dns_zone_params.merge!({:user_id => current_user.id})
       end
     end

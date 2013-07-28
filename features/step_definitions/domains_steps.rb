@@ -1,4 +1,6 @@
 
+World(Devise::TestHelpers)
+
 Given /^I have domains named (.+)$/ do |names|
   @user = FactoryGirl.create(:user)
   names.split(', ').each do |name|
@@ -17,11 +19,10 @@ When(/^authenticate$/) do
   visit new_user_session_url  
   fill_in "Email", :with => @user.email  
   fill_in "Password", :with => @user.password
-  click_button "Sign in"  
-  pending # express the regexp above with the code you wish you had
+  click_button "Sign in"
+  page.has_text? "Logged in as #{@user.email}"
 end
 
-Then(/^I should see "(.*?)"$/) do |arg1|
-  binding.pry
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see "(.*?)"$/) do |user_domain|
+  page.has_text? user_domain
 end
