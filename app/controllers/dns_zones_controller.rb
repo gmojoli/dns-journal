@@ -3,7 +3,7 @@ class DnsZonesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource :domain
   load_and_authorize_resource :dns_zone, :through => :domain
-  
+
   # GET /dns_zones
   # GET /dns_zones.json
   def index

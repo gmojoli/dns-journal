@@ -18,15 +18,15 @@ class ResourceRecordValidator < ActiveModel::Validator
     when 'CNAME'
       # alias-name IN CNAME real-name
       record.errors[:value] << "CNAME records must always be pointed to another domain name, never to an IP-address." if record.value =~ /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/
-      record.errors[:value] << "CNAME records should not contain other resource record types (such as A, NS, MX, etc.)" unless record.dns_zone.resource_records.select{ |rr| rr.value == record.value && rr.id != record.id }.empty?
+      record.errors[:value] << "CNAME records should not contain other resource record types (such as A, NS, MX, etc.)" unless record.dns_zone.resource_records.select{ |rr| rr.value == record.value && (record.id && rr.id != record.id) }.empty?
     when 'NS'
       # IN NS nameserver-name
       record.errors[:value] << "MX and NS records must never point to a CNAME alias (RFC 2181 section 10.3)." unless record.dns_zone.resource_records.select{ |rr| rr.resource_type == 'CNAME' && rr.value == record.value }.empty?
       record.errors[:value] << "The nameserver-name should be a fully qualified domain name (FQDN)." unless FqdnValidator.validate_fqdn(record.value)
     when 'MX'
       # IN MX preference-value email-server-name
-      begin 
-        URI.parse(record.value) 
+      begin
+        URI.parse(record.value)
       rescue URI::InvalidURIError
         record.errors[:value] << "MX must define an hostname in his value (mx.hostname.com)"
       end

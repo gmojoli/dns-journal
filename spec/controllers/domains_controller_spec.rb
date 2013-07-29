@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe DomainsController do
 
-  # TODO
-
   describe "#export_zone" do
 
     context "without a dns_zone_id" do
