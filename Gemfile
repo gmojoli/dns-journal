@@ -60,9 +60,7 @@ gem 'simple_form'
 group :development do
   gem 'habtm_generator'
   gem 'better_errors'
-  gem 'guard-rspec'
   gem 'pry-rails'
-  gem 'terminal-notifier-guard'
 end
 
 group :development, :test do
@@ -73,7 +71,11 @@ group :development, :test do
   gem "ffaker"
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  # gem 'cucumber'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'terminal-notifier-guard'
   gem 'cucumber-rails', require: false
   gem 'webrat'
 end
