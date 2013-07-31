@@ -7,14 +7,8 @@ class DnsZone < ActiveRecord::Base
   has_many :resource_records, :dependent => :destroy
 
   validates :user_id, :presence => { :message => "user owner is required" }
-
   validates :origin, :presence => { :message => "origin is required" }
-
-  # validates :origin, :uniqueness => { :scope => :version }
-  # validates_uniqueness_of :origin, :scope => :version, :case_sensitive => false?
-  # validates :origin, :uniqueness => true, :unless => :already_existing?
   validates :origin, :uniqueness => { :if => :first?, :scope => :user, :message => 'origin must be unique for the user'}
-
   validates :ttl, :numericality => { :only_integer => true }, :allow_nil => true
   validates :admin_email, :email => {:message => "invalid email"}, :allow_nil => true
   validates_format_of :origin, :with => /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(\/.*)?\z/ix, :message => "name must include the Top-Level domain name: example.com"
@@ -34,10 +28,6 @@ class DnsZone < ActiveRecord::Base
      DnsZone.where(:origin => origin).order( "version DESC" ).first.version + 1
   end
 
-  def already_existing?
-    DnsZone.where(:origin => origin).where(:version => version).empty?
-  end
-
   def first?
     version == 1
   end
@@ -47,7 +37,6 @@ class DnsZone < ActiveRecord::Base
     new_dns_zone.soa_section = self.soa_section.dup if self.soa_section
     Array(self.resource_records).each do |rr|
       new_dns_zone.resource_records << rr.dup
-      puts rr.inspect
     end
     new_dns_zone
   end
