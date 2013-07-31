@@ -32,13 +32,28 @@ FactoryGirl.define do
     name
   end
 
-  factory :domain do
-    name 'foo'
+  factory :domain do |d|
+    d.name 'foo'
+    d.association :user
   end
 
-  factory :dns_zone do
-    origin 'foo'
-    user { create(:user) }
+  factory :soa_section do |s|
+    s.primary_domain_name "primary_domain_name"
+  end
+
+  factory :resource_record do |rr|
+    rr.resource_type 'MX'
+    rr.value 'mx.hostname.com'
+    rr.option 1
+  end
+
+  factory :dns_zone do |d|
+    origin 'foo.com'
+    user
     domain { create(:domain, :name => 'example.com', :user => user) }
+    soa_section { create(:soa_section, :user => user)}
+    after(:create) do |d|
+      create_list(:resource_record, 3, user: d.user, :dns_zone => d)
+    end
   end
 end
