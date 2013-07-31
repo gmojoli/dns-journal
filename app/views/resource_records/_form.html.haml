@@ -1,0 +1,31 @@
+= simple_form_for [@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record] do |f|
+  - if @resource_record.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@resource_record.errors.count, "error")
+        prohibited this resource_record from being saved:
+      %ul
+        - @resource_record.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br
+      = f.number_field :name
+  .field
+    = f.label :resource_type
+    %br
+      = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true})
+  .field
+    = f.label :value
+    %br
+      = f.number_field :value
+  .field
+    = f.label :option
+    %br
+      = f.number_field :option
+  .field
+    = f.label :description
+    %br
+      = f.text_area :description
+  .actions
+    = f.submit nil, :class => "red_button"

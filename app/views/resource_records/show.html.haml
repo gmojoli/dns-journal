@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Resource Type:
+  = @resource_record.resource_type
+%p
+  %strong Name:
+  = @resource_record.name
+%p
+  %strong Value:
+  = @resource_record.value
+%p
+  %strong Rfc:
+  = @resource_record.rfc
+%p
+  %strong Description:
+  = @resource_record.description
+%p
+  %strong Details:
+  %p
+    = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
+  %p
+    = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
+= link_to 'Edit', edit_domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record)
+|
+\#{link_to 'Back', domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone)}

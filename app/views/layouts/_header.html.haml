@@ -1,0 +1,32 @@
+%header#header.large-12.columns
+  .row
+    .large-2.columns
+      = link_to image_tag('logo.png', :class => 'logo'), home_index_path
+    .large-10.columns
+      .large-5.large-offset-2.columns{:style => "margin-top: 5px !important;"}
+        .large-4.columns
+          %h6= link_to 'News', home_index_path, :class => 'header_black'
+        .large-4.columns
+          %h6= link_to 'Contact', home_index_path, :class => 'header_black'
+        .large-4.columns
+          %h6= link_to 'Download', home_index_path, :class => 'header_red'
+      .large-4.columns
+        %ul.inline-list.right
+          %li= link_to 'Insert Code', home_index_path, :class => 'red_button'
+          - if user_signed_in?
+            %li
+              %a.login_button.dropdown{"data-dropdown" => "drop_out", :href => "#"} Logout
+          - else
+            %li
+              %a.login_button.dropdown{"data-dropdown" => "drop_in", :href => "#"} Login
+          %li.divider
+          %ul#drop_in.f-dropdown
+            %li= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+            %li= link_to "Login", new_user_session_path, :class => 'navbar-link'
+          %ul#drop_out.f-dropdown
+            - if user_signed_in?
+              %li
+                Logged in as
+                %strong= current_user.email
+              %li= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+              %li= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'

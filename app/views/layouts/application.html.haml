@@ -1,0 +1,50 @@
+!!!
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html class="ie6" lang="en">
+/[if IE 7 ] <html class="ie7" lang="en">
+/[if IE 8 ] <html class="ie8" lang="en">
+/ [if (gte IE 9)|!(IE)]><!
+%html{:lang => "en"}
+  / <![endif]
+  %head
+    %meta{:charset => "utf-8"}/
+    / Uncomment to make IE8 render like IE7
+    / <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    / Set the viewport width to device width for mobile
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= title; content_for?(:title) ? yield(:title) : "Untitled"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/custom.modernizr"
+    = csrf_meta_tags
+  %body.main_body
+    = render 'layouts/header'
+    .wrapper
+      .row
+        .small-8.columns
+          = yield
+        .small-3.offset-large-1.columns{:style => "text-align: center"}
+          %p.navbar-text.pull-right
+            - if notice.present? || alert.present?
+              .panel
+                %p.notice= notice
+                %p.alert= alert
+          %p.navbar-text.pull-right
+            .panel
+              - if user_signed_in?
+                Logged in as
+                = succeed "." do
+                  %strong= current_user.email
+                %p
+                  = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+                  |
+                  \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+                %p
+                  Managing #{current_user.domains.count} #{link_to 'domains', domains_path}
+              - else
+                = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+                |
+                \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
+      .push
+    .footer
+      = render 'layouts/footer'
+    = javascript_include_tag "application"

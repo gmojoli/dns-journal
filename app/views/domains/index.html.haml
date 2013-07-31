@@ -1,0 +1,16 @@
+%h1 Listing domains
+- if @domains.present?
+  %table
+    %thead
+      %tr
+        %th Name
+        %th
+    %tbody
+      - @domains.each do |domain|
+        %tr
+          %td= domain.name
+          %td.button-group
+            = link_to 'Show', domain, :class => "red_button"
+            = link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+%br
+  = link_to 'New Domain', new_domain_path, { :class => "red_button" }

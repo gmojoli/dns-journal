@@ -1,0 +1,94 @@
+#dns_zone_section
+  .row
+    .large-12.columns
+      %h3
+        Domain: #{link_to "#{@dns_zone.domain.name}", domain_path(@dns_zone.domain)}
+  .row
+    .large-8.columns
+      %p
+        %strong Admin email:
+        = @dns_zone.admin_email
+  .row
+    .large-8.columns
+      .panel
+        %code
+          $ORIGIN: #{@dns_zone.origin}.
+          TTL: #{@dns_zone.ttl} ;
+    .large-4.columns
+      %ul.button-group{:style => "margin-top: 10px;"}
+        %li= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), :class => "red_button"
+        %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"
+.row
+  #soa_section
+    %fieldset
+      %legend Start of Authority (SOA)
+      - if @dns_zone.soa_section
+        .panel
+          %code
+            = "#{@dns_zone.origin}. #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.primary_domain_name}. (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
+        %table
+          %thead
+            %tr
+              %th Primary Domain Name
+              %th Zone Class
+              %th
+              %th Serial Number
+              %th Refresh
+              %th Retry
+              %th Expire
+              %th Negative Caching
+          %tbody
+            %tr
+              %td
+                = "#{@dns_zone.soa_section.primary_domain_name}"
+              %td= "#{@dns_zone.soa_section.zone_class}"
+              %td SOA
+              %td= "#{@dns_zone.soa_section.serial_number}"
+              %td= "#{@dns_zone.soa_section.refresh}"
+              %td= "#{@dns_zone.soa_section.retry}"
+              %td= "#{@dns_zone.soa_section.expire}"
+              %td= "#{@dns_zone.soa_section.negative_caching}"
+        %p
+          %ul.button-group
+            = link_to 'Show', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button"
+            = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button"
+            = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+      - else
+        = render 'soa_section_form'
+  #rr_section
+    %fieldset
+      %legend Resource Records (RR)
+      %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
+        %h3 ?
+      - unless @dns_zone.resource_records.empty?
+        %table
+          %thead
+            %tr
+              %th Name
+              %th
+              %th Type
+              %th Value
+              %th Option
+              %th Defining RFC
+              %th Description
+          %tbody
+            - @dns_zone.resource_records.each do |rr|
+              %tr
+                %td= rr.name
+                %td IN
+                %td
+                  %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.tooltips[rr.resource_type]}
+                    = rr.resource_type
+                %td= rr.value
+                %td= rr.option
+                %td= link_to "#{rr.rfc}", "#{rr.link_rfc}"
+                %td= rr.description
+                %td
+                  = link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), :class => "red_button"
+                %td
+                  = link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+      %fieldset
+        %legend New Resource Record
+        = render 'rr_form'
+%ul.button-group
+  %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"

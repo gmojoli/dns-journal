@@ -1,0 +1,39 @@
+.row
+  .large-4.large-offset-4.columns
+    %h2= @domain.name
+%p
+  %strong Dns Zone (current):
+  - if @domain.current_dns_zone
+    = link_to "#{@domain.dns_zone.origin}", domain_dns_zone_path(@domain,@domain.current_dns_zone)
+    version #{@domain.dns_zone.version}
+  - else
+    None selected
+%fieldset#domain_dns_zones
+  - if @domain.dns_zones.present?
+    #dns_zones
+      %table
+        %thead
+          %tr
+            %th origin
+            %th version
+            %th
+        %tbody
+          - @domain.dns_zones.each do |dns_zone|
+            %tr
+              %td= dns_zone.origin
+              %td= dns_zone.version
+              %td.button-group
+                = link_to 'Show', domain_dns_zone_path(@domain, dns_zone), :class => "red_button"
+                = link_to 'Use', select_path(@domain, dns_zone), { :class => "red_button" }
+                = link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+                = link_to 'Export', export_path(@domain, dns_zone.id), { :class => "red_button" }
+  %div
+    = simple_form_for [@domain, DnsZone.new] do |f|
+      %p
+        = f.label :origin, "New dns zone: $ORIGIN"
+        %br/
+        = f.text_field :origin
+      %p= f.submit "Add Dns Zone", :class => "red_button"
+%ul.button-group
+  %li= link_to 'Edit', edit_domain_path(@domain), :class => "red_button"
+  %li= link_to 'Back', domains_path, :class => "red_button"

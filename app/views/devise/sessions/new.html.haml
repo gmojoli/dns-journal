@@ -1,0 +1,24 @@
+%h2 Sign in
+%hr/
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .row
+    .large-3.columns
+      = f.label :email, class: "right inline"
+    .large-9.columns
+      = f.email_field :email, :autofocus => true
+  .row
+    .large-3.columns
+      = f.label :password, class: "right inline"
+    .large-9.columns
+      = f.password_field :password
+  .row
+    .large-3.columns
+      = f.label :remember_me, class: "right inline"
+    .large-9.columns
+      = f.check_box :remember_me
+  .row
+    .large-3.columns.large-offset-3
+      = f.submit "Sign in", :class => "red_button"
+  .row
+    .large-6.columns
+      = render "devise/shared/links"

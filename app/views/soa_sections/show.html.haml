@@ -1,0 +1,30 @@
+%p#notice= notice
+%p
+  %strong Primary domain name:
+  = @soa_section.primary_domain_name
+%p
+  %strong Zone class:
+  = @soa_section.zone_class
+%p
+  %strong Mname:
+  = @soa_section.mname
+%p
+  %strong Rname:
+  = @soa_section.rname
+%p
+  %strong Serial number:
+  = @soa_section.serial_number
+%p
+  %strong Refresh:
+  = @soa_section.refresh
+%p
+  %strong Retry:
+  = @soa_section.retry
+%p
+  %strong Expire:
+  = @soa_section.expire
+%p
+  %strong Negative caching:
+  = @soa_section.negative_caching
+= link_to 'Back', domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone), :class => "red_button"
+= link_to 'Edit', edit_domain_dns_zone_soa_section_path(@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section), :class => "red_button"
