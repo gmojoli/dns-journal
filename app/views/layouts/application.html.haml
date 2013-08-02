@@ -16,13 +16,12 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
-  %body.main_body
-    = render 'layouts/header'
+  %body
     .wrapper
       .row
-        .small-8.columns
+        .large-8.columns
           = yield
-        .small-3.offset-large-1.columns{:style => "text-align: center"}
+        .large-3.offset-large-1.columns{:style => "text-align: center"}
           %p.navbar-text.pull-right
             - if notice.present? || alert.present?
               .panel

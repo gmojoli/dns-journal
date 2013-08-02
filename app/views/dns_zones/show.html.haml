@@ -16,8 +16,7 @@
           TTL: #{@dns_zone.ttl} ;
     .large-4.columns
       %ul.button-group{:style => "margin-top: 10px;"}
-        %li= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), :class => "red_button"
-        %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"
+        %li= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone)
 .row
   #soa_section
     %fieldset
@@ -49,10 +48,9 @@
               %td= "#{@dns_zone.soa_section.expire}"
               %td= "#{@dns_zone.soa_section.negative_caching}"
         %p
-          %ul.button-group
-            = link_to 'Show', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button"
-            = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), :class => "red_button"
-            = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+          = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section)
+          = precede ' | ' do
+            = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }
       - else
         = render 'soa_section_form'
   #rr_section
@@ -69,7 +67,6 @@
               %th Type
               %th Value
               %th Option
-              %th Defining RFC
               %th Description
           %tbody
             - @dns_zone.resource_records.each do |rr|
@@ -81,14 +78,13 @@
                     = rr.resource_type
                 %td= rr.value
                 %td= rr.option
-                %td= link_to "#{rr.rfc}", "#{rr.link_rfc}"
                 %td= rr.description
                 %td
-                  = link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), :class => "red_button"
-                %td
-                  = link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+                  %li= link_to "#{rr.rfc}", "#{rr.link_rfc}"
+                  %li= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr)
+                  %li= link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }
       %fieldset
         %legend New Resource Record
         = render 'rr_form'
 %ul.button-group
-  %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "red_button"
+  %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "button"

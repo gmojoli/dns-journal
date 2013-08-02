@@ -5,17 +5,6 @@ class SoaSectionsController < ApplicationController
   load_and_authorize_resource :dns_zone
   load_and_authorize_resource :soa_section, :through => :dns_zone, :singleton => true
 
-  # GET /soa_sections
-  # GET /soa_sections.json
-  def index
-    @soa_sections = SoaSection.all
-  end
-
-  # GET /soa_sections/1
-  # GET /soa_sections/1.json
-  def show
-  end
-
   # GET /soa_sections/new
   def new
     @soa_section = SoaSection.new
@@ -23,6 +12,7 @@ class SoaSectionsController < ApplicationController
 
   # GET /soa_sections/1/edit
   def edit
+    # TODO: remove and edit in show dns_zone
   end
 
   # POST /soa_sections

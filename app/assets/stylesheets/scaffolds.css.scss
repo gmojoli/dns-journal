@@ -1,6 +1,3 @@
-@import "variables";
-@import "mixins";
-
 * {
   margin: 0;
 }
@@ -11,40 +8,16 @@ html, body {
 
 .wrapper {
   min-height: 100%;
-  height: auto !important;
+  height: auto;
   height: 100%;
-  margin: 0 auto -62px; /* the bottom margin is the negative value of the footer's height */
+  /* the bottom margin is the negative value of the footer's height */
+  margin: 0 auto -62px;
 }
 
 .footer, .push {
-  height: 62px; /* .push must be the same height as .footer */
-}
-
-body {
-  @include basic_font;
-  background-color: #fff;
-  color: #333;
-}
-
-p, ol, ul, td {
-  @include basic_font;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
-a {
-  color: black;
-  &:visited { 
-    color: black;
-  }
-  &:hover { 
-    color: #f24141 !important;
-    background: none !important;
-  }
+  /* .push must be the same height as .footer */
+  height: 62px;
+  text-align: center;
 }
 
 div {
@@ -53,16 +26,12 @@ div {
   }
 }
 
-button {
-  background: $bg !important;
-}
-
 p.notice {
-  color: green !important;
+  color: green;
 }
 
 p.alert {
-  color: red !important;
+  color: red;
 }
 
 .field_with_errors {

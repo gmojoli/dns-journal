@@ -47,6 +47,8 @@ end
 # Use Readline in the Rails Console
 gem 'rb-readline', '~>0.5.0', require: 'readline'
 
+gem 'haml'
+
 # http://foundation.zurb.com/docs/
 # gem 'compass-rails' #, github: 'milgner/compass-rails', branch: 'rails4'
 gem 'zurb-foundation' #, '~> 4.0.0'

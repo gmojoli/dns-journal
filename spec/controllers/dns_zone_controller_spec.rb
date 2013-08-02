@@ -34,6 +34,12 @@ describe DnsZonesController do
         end.should change(ResourceRecord, :count).by(@dns_zone.resource_records.count)
       end
 
+      it "create a dup for a soa section" do
+        lambda do
+          put :update, {:domain_id => @dns_zone.domain.id, :id => @dns_zone.id, :dns_zone => @attr}
+        end.should change(SoaSection, :count).by(1)
+      end
+
     end
 
   end

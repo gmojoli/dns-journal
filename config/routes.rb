@@ -1,26 +1,19 @@
 DnsJournal::Application.routes.draw do
+  root 'home#index'
+
   devise_for :users
+
   get "home/index"
 
-  # resources :soa_sections
-
-  # resources :resource_records
-
-  # resources :dns_zones do #, :only => [ :show ]
-  #   resources :soa_sections
-  # end
-
   resources :domains do
-    resources :dns_zones do 
-      resources :soa_sections, :only => [:show, :edit, :create, :new, :update, :destroy]
-      resources :resource_records
-    end #, :only => [:create, :destroy]
+    resources :dns_zones, :only => [:create, :destroy, :show, :edit] do
+      resources :soa_sections, :only => [:edit, :create, :update, :destroy]
+      resources :resource_records, :only => [:show, :edit, :create, :update, :destroy]
+    end
   end
 
   get '/domains/:id/export/:dns_zone_id' => 'domains#export_zone', as: :export
   get '/domains/:id/select/:dns_zone' => 'domains#select_dns_zone', as: :select
-
-  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -62,7 +55,7 @@ DnsJournal::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -13,6 +13,11 @@ describe DnsZone do
     DnsZone.last[:version].should eq 9
     DnsZone.last.new_version.should eq 10
   end
-  it "must be unique for an user"
+
+  it "must be unique for an user" do
+    dns_zone_foo = create(:dns_zone)
+    dns_zone_bar = create(:dns_zone)
+    FactoryGirl.build(:dns_zone, :user => dns_zone_foo.user).should_not be_valid
+  end
   it "can clone itself"
 end

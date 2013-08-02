@@ -9,8 +9,9 @@
       - @domains.each do |domain|
         %tr
           %td= domain.name
-          %td.button-group
-            = link_to 'Show', domain, :class => "red_button"
-            = link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' }, :class => "red_button"
+          %td
+            = link_to 'Show', domain
+            = precede ' | ' do
+              = link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' }
 %br
-  = link_to 'New Domain', new_domain_path, { :class => "red_button" }
+  = link_to 'New Domain', new_domain_path, { :class => "button" }

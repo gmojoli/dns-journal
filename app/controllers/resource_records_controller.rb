@@ -2,21 +2,10 @@ class ResourceRecordsController < ApplicationController
   before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   load_and_authorize_resource
-  
-  # GET /resource_records
-  # GET /resource_records.json
-  def index
-    @resource_records = ResourceRecord.all
-  end
 
   # GET /resource_records/1
   # GET /resource_records/1.json
   def show
-  end
-
-  # GET /resource_records/new
-  def new
-    @resource_record = ResourceRecord.new
   end
 
   # GET /resource_records/1/edit
