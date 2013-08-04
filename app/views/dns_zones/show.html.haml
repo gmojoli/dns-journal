@@ -55,36 +55,40 @@
         = render 'soa_section_form'
   #rr_section
     %fieldset
-      %legend Resource Records (RR)
-      %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
-        %h5 ?
-      - unless @dns_zone.resource_records.empty?
-        %table
-          %thead
-            %tr
-              %th Name
-              %th
-              %th Type
-              %th Value
-              %th Option
-              %th Description
-          %tbody
-            - @dns_zone.resource_records.each do |rr|
+      %legend
+        Resource Records (RR)
+        = precede ' - ' do
+          = link_to 'Show more', '#', :id => 'hide_rr_section'
+      #rr_section_content
+        %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
+          %h5 ?
+        - unless @dns_zone.resource_records.empty?
+          %table
+            %thead
               %tr
-                %td= rr.name
-                %td IN
-                %td
-                  %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.tooltips[rr.resource_type]}
-                    = rr.resource_type
-                %td= rr.value
-                %td= rr.option
-                %td= rr.description
-                %td
-                  %li= link_to "#{rr.rfc}", "#{rr.link_rfc}"
-                  %li= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr)
-                  %li= link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }
+                %th Name
+                %th
+                %th Type
+                %th Value
+                %th Option
+                %th Description
+            %tbody
+              - @dns_zone.resource_records.each do |rr|
+                %tr
+                  %td= rr.name
+                  %td IN
+                  %td
+                    %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.tooltips[rr.resource_type]}
+                      = rr.resource_type
+                  %td= rr.value
+                  %td= rr.option
+                  %td= rr.description
+                  %td
+                    %li= link_to "#{rr.rfc}", "#{rr.link_rfc}"
+                    %li= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr)
+                    %li= link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }
       %fieldset
         %legend New Resource Record
         = render 'rr_form'
 %ul.button-group
-  %li= link_to 'Back', domain_path(@dns_zone.domain), :class => "button"
+  %li= link_to 'Back', domain_path(@dns_zone.domain)
