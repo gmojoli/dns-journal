@@ -3,7 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "click", "#hide_rr_section", (event) ->
+  console.log(event)
   event.preventDefault() # Prevent link from following its href
-  $("#rr_section_content").toggle()
+  $("#rr_section_form").toggle()
   $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
 
+$(document).on "change", "[data-purpose=\"show-types\"]", (e) ->
+  if ($("[data-purpose=\"show-types\"]").val() is "MX")
+    $("#rr_option").css "display", "block"
+  else
+    $("#rr_option").css "display", "none"

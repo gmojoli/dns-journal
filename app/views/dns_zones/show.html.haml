@@ -57,8 +57,6 @@
     %fieldset
       %legend
         Resource Records (RR)
-        = precede ' - ' do
-          = link_to 'Show more', '#', :id => 'hide_rr_section'
       #rr_section_content
         %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
           %h5 ?
@@ -88,7 +86,11 @@
                     %li= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr)
                     %li= link_to 'Destroy', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr), method: :delete, data: { confirm: 'Are you sure?' }
       %fieldset
-        %legend New Resource Record
-        = render 'rr_form'
+        %legend
+          New Resource Record
+          = precede ' - ' do
+            = link_to 'Show less', '#', :id => 'hide_rr_section'
+        #rr_section_form
+          = render 'rr_form'
 %ul.button-group
   %li= link_to 'Back', domain_path(@dns_zone.domain)

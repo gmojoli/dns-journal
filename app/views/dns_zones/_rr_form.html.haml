@@ -11,12 +11,14 @@
     .large-3.columns
       = f.label :resource_type, class: "right inline"
     .large-3.columns.left
-      = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true})
-    .large-3.columns
-      %span.has-tip{"data-tooltip" => "", :title => "an MX require a priority value"}
-        = f.label :option, class: "right inline"
-    .large-3.columns
-      = f.number_field :option
+      #select_rr_type
+        = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true}, {:data => {:purpose => "show-types"}})
+    #rr_option
+      .large-3.columns
+        %span.has-tip{"data-tooltip" => "", :title => "an MX require a priority value"}
+          = f.label :option, class: "right inline"
+      .large-3.columns
+        = f.number_field :option
   .row
     .large-3.columns
       = f.label :name, class: "right inline"
@@ -27,11 +29,6 @@
       = f.label :value, class: "right inline"
     .large-9.columns
       = f.text_field :value
-  .row
-    .large-3.columns
-      = f.label :option, class: "right inline"
-    .large-9.columns
-      = f.number_field :option
   .row
     .large-3.columns
       = f.label :description, class: "right inline"
