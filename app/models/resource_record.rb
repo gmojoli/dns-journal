@@ -4,7 +4,7 @@ class ResourceRecord < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
-
+  validates :dns_zone, presence: true
   validates_with ResourceRecordValidator
 
   before_save ->{ self.description = self.class.definitions[self.resource_type].join(', ') if self.description.blank? }
