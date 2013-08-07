@@ -17,7 +17,15 @@ describe DnsZone do
   it "must be unique for an user" do
     dns_zone_foo = create(:dns_zone)
     dns_zone_bar = create(:dns_zone)
-    FactoryGirl.build(:dns_zone, :user => dns_zone_foo.user).should_not be_valid
+    another_dns_zone = FactoryGirl.build(:dns_zone, :user => dns_zone_foo.user, :domain => dns_zone_foo.domain)
+    another_dns_zone.should_not be_valid
   end
-  it "can clone itself"
+
+  it "can clone itself" do
+    dns_zone_foo = create(:dns_zone)
+    dns_zone_clone = dns_zone_foo.deep_clone
+    expect(dns_zone_clone.domain).to eq dns_zone_foo.domain
+    expect(dns_zone_clone.soa_section.primary_domain_name).to eq dns_zone_foo.soa_section.primary_domain_name
+    expect(dns_zone_clone.resource_records).to eq dns_zone_foo.resource_records
+  end
 end

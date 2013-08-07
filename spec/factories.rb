@@ -39,12 +39,15 @@ FactoryGirl.define do
 
   factory :soa_section do |s|
     s.primary_domain_name "primary_domain_name"
+    s.association :user
   end
 
   factory :resource_record do |rr|
     rr.resource_type 'MX'
     rr.value 'mx.hostname.com'
     rr.option 1
+    rr.association :user
+    rr.association :dns_zone
   end
 
   factory :dns_zone do |d|
