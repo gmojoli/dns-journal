@@ -72,7 +72,7 @@ group :development, :test do
   gem "pry"
   gem "ffaker"
   gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.0.1'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rails'
   gem 'guard-rspec'
