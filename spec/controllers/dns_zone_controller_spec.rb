@@ -14,10 +14,6 @@ describe DnsZonesController do
     end
 
     context "with an existing domain and a dns_zone" do
-      it "respond to GET index" do
-        get :index, {:domain_id => @dns_zone.domain}
-        response.status.should eq 200
-      end
 
       it "create a new dns_zone when updating" do
         lambda do
