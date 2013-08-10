@@ -39,6 +39,7 @@ FactoryGirl.define do
 
   factory :soa_section do |s|
     s.primary_domain_name "primary_domain_name"
+    s.association :dns_zone
     s.association :user
   end
 
@@ -54,8 +55,8 @@ FactoryGirl.define do
     origin 'foo.com'
     user
     domain { create(:domain, :name => 'example.com', :user => user) }
-    soa_section { create(:soa_section, :user => user)}
     after(:create) do |d|
+      d.create_soa_section!(primary_domain_name: 'sample.com', user: d.user)
       create_list(:resource_record, 3, user: d.user, :dns_zone => d)
     end
   end
