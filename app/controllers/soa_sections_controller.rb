@@ -1,6 +1,7 @@
 class SoaSectionsController < ApplicationController
-  before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
+
   before_filter :authenticate_user!
+  # before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource :dns_zone
   load_and_authorize_resource :soa_section, :through => :dns_zone, :singleton => true
@@ -37,7 +38,7 @@ class SoaSectionsController < ApplicationController
   # PATCH/PUT /soa_sections/1.json
   def update
     respond_to do |format|
-      if @soa_section.update(soa_section_params)
+      if @soa_section.update(soa_section_params.merge({revision: @soa_section.revision += 1 }))
         format.html { redirect_to domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone), notice: 'Soa section was successfully updated.' }
         format.json { head :no_content }
       else
