@@ -48,6 +48,7 @@ end
 gem 'rb-readline', '~>0.5.0', require: 'readline'
 
 gem 'haml'
+gem 'html2haml'
 
 # http://foundation.zurb.com/docs/
 # gem 'compass-rails' #, github: 'milgner/compass-rails', branch: 'rails4'
