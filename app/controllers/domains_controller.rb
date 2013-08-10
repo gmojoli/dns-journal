@@ -1,9 +1,10 @@
 require 'tempfile'
 
 class DomainsController < ApplicationController
-  before_action :set_domain, only: [:show, :edit, :update, :destroy]
+
+  #before_action :set_domain, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
   # GET /domains
   # GET /domains.json
@@ -83,7 +84,7 @@ class DomainsController < ApplicationController
     dns_zone = DnsZone.find(params[:dns_zone_id])
     file_content = "$ORIGIN: #{dns_zone.origin}. TTL: #{dns_zone.ttl} ;"
     file_content.concat "\n#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name}. (#{dns_zone.soa_section.serial_number} #{dns_zone.soa_section.refresh} #{dns_zone.soa_section.retry} #{dns_zone.soa_section.expire} #{dns_zone.soa_section.negative_caching}) ;" if dns_zone.soa_section
-    Array(dns_zone.resource_records).each do |rr| 
+    Array(dns_zone.resource_records).each do |rr|
       file_content.concat "\n#{rr.name} IN #{rr.resource_type} #{rr.value} #{rr.option || ''} ;"
     end
     # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|

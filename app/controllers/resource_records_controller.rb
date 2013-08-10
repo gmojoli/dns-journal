@@ -1,5 +1,6 @@
 class ResourceRecordsController < ApplicationController
-  before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
+
+  # before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   load_and_authorize_resource
 
