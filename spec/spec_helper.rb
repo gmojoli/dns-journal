@@ -47,3 +47,10 @@ RSpec.configure do |config|
   config.include LoginHelpers, type: :request
   config.include Devise::TestHelpers, type: :controller
 end
+
+# TODO::::
+# before do
+#   @user = create(:user)
+#   controller.stub(:authenticate_user!).and_return true
+#   controller.stub(:current_user).and_return @user
+# end
