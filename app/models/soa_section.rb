@@ -23,7 +23,7 @@ class SoaSection < ActiveRecord::Base
   end
 
   def max_revision
-    (SoaSection.where('user_id' => user_id).maximum(:revision) || 0) + 1
+    (SoaSection.where('primary_domain_name' => primary_domain_name).where('user_id' => user_id).maximum(:revision) || 0) + 1
   end
 
 end
