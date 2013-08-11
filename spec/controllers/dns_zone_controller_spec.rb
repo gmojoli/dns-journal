@@ -25,6 +25,7 @@ describe DnsZonesController do
       end
 
       it "create a dup for every resouce_record" do
+        # expect{get :index}.to raise_error(CanCan::AccessDenied)
         lambda do
           put :update, {:domain_id => @dns_zone.domain.id, :id => @dns_zone.id, :dns_zone => @attr}
         end.should change(ResourceRecord, :count).by(@dns_zone.resource_records.count)

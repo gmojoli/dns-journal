@@ -48,9 +48,15 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
 end
 
-# TODO::::
-# before do
-#   @user = create(:user)
-#   controller.stub(:authenticate_user!).and_return true
-#   controller.stub(:current_user).and_return @user
-# end
+RSpec.configure do |config|
+  config.before(:each, :type => :controller) do
+    set_current_user
+  end
+end
+
+def set_current_user
+  @user = create(:user)
+  controller.stub(:authenticate_user!).and_return true
+  controller.stub(:current_user).and_return @user
+end
+
