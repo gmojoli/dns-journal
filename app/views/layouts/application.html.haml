@@ -36,7 +36,7 @@
                 %p
                   = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
                   = precede ' | ' do
-                    = link_to("Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link', confirm: "Are you sure?")
+                    = link_to("Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link', :data => { :confirm => "Are you sure?" })
                 %p
                   Managing #{current_user.domains.count} #{link_to 'domains', domains_path}
               - else
