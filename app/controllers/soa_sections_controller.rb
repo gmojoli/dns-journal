@@ -38,7 +38,7 @@ class SoaSectionsController < ApplicationController
   # PATCH/PUT /soa_sections/1.json
   def update
     respond_to do |format|
-      if @soa_section.update(soa_section_params.merge({revision: @soa_section.revision += 1 }))
+      if @soa_section.update(soa_section_params.merge({serial_number: @soa_section.serial_number += 1, revision: @soa_section.revision += 1 }))
         format.html { redirect_to domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone), notice: 'Soa section was successfully updated.' }
         format.json { head :no_content }
       else
@@ -59,6 +59,7 @@ class SoaSectionsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_soa_section
       unless @soa_section = current_user.soa_sections.where(id: params[:id]).first
