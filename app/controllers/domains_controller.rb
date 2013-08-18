@@ -6,6 +6,8 @@ class DomainsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
+  VERSION = 0.1
+
   # GET /domains
   # GET /domains.json
   def index
@@ -82,20 +84,37 @@ class DomainsController < ApplicationController
 
   def export_zone
     dns_zone = DnsZone.find(params[:dns_zone_id])
-    file_content = "$ORIGIN: #{dns_zone.origin}. TTL: #{dns_zone.ttl} ;"
-    file_content.concat "\n#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name}. (#{dns_zone.soa_section.serial_number} #{dns_zone.soa_section.refresh} #{dns_zone.soa_section.retry} #{dns_zone.soa_section.expire} #{dns_zone.soa_section.negative_caching}) ;" if dns_zone.soa_section
-    Array(dns_zone.resource_records).each do |rr|
-      file_content.concat "\n#{rr.name} IN #{rr.resource_type} #{rr.value} #{rr.option || ''} ;"
+
+    respond_to do |format|
+      if dns_zone
+        format.html do
+          begin
+            file_content = "#{header}\n"
+            # file_content.concat ";\n"
+            file_content.concat "$ORIGIN #{dns_zone.origin}.\n$TTL #{dns_zone.ttl}\n"
+            # file_content.concat ";\n"
+            file_content.concat "#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name} #{dns_zone.admin_email}. "
+            if dns_zone.soa_section
+              file_content.concat "(\n\t#{dns_zone.soa_section.serial_number} ; serial\n\t#{dns_zone.soa_section.refresh} ; refresh after #{dns_zone.soa_section.refresh} seconds\n\t#{dns_zone.soa_section.retry} ; retry after #{dns_zone.soa_section.retry} seconds\n\t#{dns_zone.soa_section.expire} ; expire after #{dns_zone.soa_section.expire} seconds\n\t#{dns_zone.soa_section.negative_caching} ; negative caching\n)\n"
+            end
+            file_content.concat "; -- resource records\n"
+            Array(dns_zone.resource_records).each do |rr|
+              file_content.concat "; #{ResourceRecord.definitions.fetch(rr.resource_type)[0]}\n"
+              file_content.concat "#{rr.to_code_string}\n"
+            end
+            # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
+            #   f.print file_content
+            #   f.flush
+            # end
+            send_data( file_content, :filename => "#{@domain.name}.txt" )
+            flash[:notice] = 'File exported'
+          rescue
+            flash[:alert] = 'Something went wrong...' #TODO
+            raise
+          end
+        end
+      end
     end
-    # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
-    #   f.print file_content
-    #   f.flush
-    # end
-    send_data( file_content, :filename => "#{@domain.name}.txt" )
-    flash[:notice] = 'file exported'
-  rescue
-    flash[:alert] = 'something went wrong...' #TODO
-    raise
   end
 
   private
@@ -111,4 +130,9 @@ class DomainsController < ApplicationController
     def domain_params
       params.require(:domain).permit(:name, :note)
     end
+
+    def header
+      "; -- zonefile created with Dns-Journal (#{VERSION}) - #{Date.today}"
+    end
+
 end
