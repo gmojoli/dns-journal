@@ -9,7 +9,15 @@ $(document).on "click", "#hide_rr_section", (event) ->
   $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
 
 $(document).on "change", "[data-purpose=\"show-types\"]", (e) ->
+
   if ($("[data-purpose=\"show-types\"]").val() is "MX")
     $("#rr_option").css "display", "block"
+    $("#rr_name").css "display", "none"
   else
     $("#rr_option").css "display", "none"
+    $("#rr_name").css "display", "block"
+
+  if ($("[data-purpose=\"show-types\"]").val() is "NS")
+    $("#rr_name").css "display", "none"
+  else
+    $("#rr_name").css "display", "block"
