@@ -42,6 +42,16 @@ class ResourceRecord < ActiveRecord::Base
     end
   end
 
+  def name
+    _name = read_attribute(:name) || ''
+    # TODO: understand trailing point...
+    # _name.concat(".#{dns_zone.origin}") if _name[-1] != '.' && dns_zone
+  end
+
+  def to_code_string
+    "#{name} IN #{resource_type} #{value} #{option || ''} ;"
+  end
+
   def rfc
     self.class.available_resource_types.fetch(resource_type){''}
   end
