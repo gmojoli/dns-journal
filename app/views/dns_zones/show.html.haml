@@ -25,7 +25,7 @@
       - if @dns_zone.soa_section
         .panel
           %code
-            = "#{@dns_zone.origin}. #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.primary_domain_name}. (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
+            = "#{@dns_zone.origin} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.primary_domain_name} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
         %table
           %thead
             %tr
@@ -62,6 +62,11 @@
         %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
           %h5 ?
         - unless @dns_zone.resource_records.empty?
+          .panel
+            %code
+              - Array(@dns_zone.resource_records).each do |rr|
+                = rr.to_code_string
+                %br
           %table
             %thead
               %tr
@@ -70,7 +75,6 @@
                 %th Type
                 %th Value
                 %th Option
-                %th Description
             %tbody
               - @dns_zone.resource_records.each do |rr|
                 %tr
@@ -81,7 +85,6 @@
                       = rr.resource_type
                   %td= rr.value
                   %td= rr.option
-                  %td= rr.description
                   %td
                     %li= link_to "#{rr.rfc}", "#{rr.link_rfc}"
                     %li= link_to 'Details', domain_dns_zone_resource_record_path(@dns_zone.domain, @dns_zone, rr)
