@@ -12,8 +12,9 @@
     .large-8.columns
       .panel
         %code
-          $ORIGIN: #{@dns_zone.origin}.
-          TTL: #{@dns_zone.ttl} ;
+          $ORIGIN #{@dns_zone.origin} ;
+          %br
+          $TTL #{@dns_zone.ttl} ;
     .large-4.columns
       %ul.button-group{:style => "margin-top: 10px;"}
         %li= link_to 'Edit', edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone)
