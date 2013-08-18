@@ -106,6 +106,7 @@ GEM
       activerecord (> 3.1)
     haml (4.0.3)
       tilt
+    high_voltage (1.2.4)
     hike (1.2.3)
     hpricot (0.8.6)
     html2haml (1.0.1)
@@ -259,6 +260,7 @@ DEPENDENCIES
   guard-rspec
   habtm_generator
   haml
+  high_voltage
   html2haml
   jbuilder (~> 1.2)
   jquery-rails

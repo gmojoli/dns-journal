@@ -84,3 +84,5 @@ group :development, :test do
 end
 
 # gem 'rails-admin', :git => 'git://github.com/sferik/rails_admin.git'
+
+gem 'high_voltage'
