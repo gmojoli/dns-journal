@@ -10,7 +10,7 @@
     None selected
 %fieldset#domain_dns_zones
   - if @domain.dns_zones.present?
-    #dns_zones
+    .dns_zones
       %table
         %thead
           %tr
@@ -30,13 +30,14 @@
                   = link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }
                 = precede ' | ' do
                   = link_to 'Export', export_path(@domain, dns_zone.id)
-  %div
-    = simple_form_for [@domain, DnsZone.new] do |f|
-      %p
-        = f.label :origin, "New dns zone: $ORIGIN"
-        %br/
-        = f.text_field :origin
-      %p= f.submit "Add Dns Zone"
+  - else
+    .new_dns_zone
+      = simple_form_for [@domain, DnsZone.new] do |f|
+        %p
+          = f.label :origin, "New dns zone: $ORIGIN"
+          %br/
+          = f.text_field :origin
+        %p= f.submit "Add Dns Zone"
 .row
   = link_to 'Edit', edit_domain_path(@domain)
   = precede ' | ' do
