@@ -54,13 +54,11 @@
             = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }
       - else
         = render 'soa_section_form'
-  #rr_section
+  .rr_section
     %fieldset
       %legend
         Resource Records (RR)
-      #rr_section_content
-        %span.has-tip{"data-tooltip" => "", :title => ResourceRecord.definitions.to_s}
-          %h5 ?
+      .rr_section_content
         - unless @dns_zone.resource_records.empty?
           .panel
             %code
@@ -93,8 +91,8 @@
         %legend
           New Resource Record
           = precede ' - ' do
-            = link_to 'Show less', '#', :id => 'hide_rr_section'
-        #rr_section_form
+            = link_to 'Show more', '#', :id => 'hide_rr_section'
+        .rr_section_form
           = render 'rr_form'
 %ul.button-group
   %li= link_to 'Back', domain_path(@dns_zone.domain)

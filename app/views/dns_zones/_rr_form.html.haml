@@ -13,13 +13,13 @@
     .large-3.columns.left
       #select_rr_type
         = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true}, {:data => {:purpose => "show-types"}})
-    #rr_option
+    .rr_option
       .large-3.columns
         %span.has-tip{"data-tooltip" => "", :title => "an MX require a priority value"}
           = f.label :option, class: "right inline"
       .large-3.columns
         = f.number_field :option
-  #rr_name
+  .rr_name
     .row
       .large-3.columns
         = f.label :name, class: "right inline"
