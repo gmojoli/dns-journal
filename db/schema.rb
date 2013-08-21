@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130715210213) do
+ActiveRecord::Schema.define(version: 20130821220644) do
 
   create_table "dns_zones", force: true do |t|
     t.string   "admin_email"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 20130715210213) do
     t.integer "domain_id"
     t.integer "dns_zone_id"
   end
+
+  create_table "rails_admin_histories", force: true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "resource_records", force: true do |t|
     t.string   "value"
