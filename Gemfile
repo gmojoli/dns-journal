@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '  ~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'sass-rails'#, '~> 4.0.0.rc2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -64,6 +64,7 @@ group :development do
   gem 'habtm_generator'
   gem 'better_errors'
   gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 group :development, :test do
@@ -83,6 +84,6 @@ group :development, :test do
   gem 'webrat'
 end
 
-# gem 'rails-admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :github => 'sferik/rails_admin'
 
 gem 'high_voltage'
