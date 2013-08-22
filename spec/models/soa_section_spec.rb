@@ -13,6 +13,5 @@ describe SoaSection do
       expect(soa_section).to be_valid
     end
 
-    it "updates its serial_number after an update"
   end
 end
