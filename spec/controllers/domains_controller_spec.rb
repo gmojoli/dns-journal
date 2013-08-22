@@ -18,7 +18,7 @@ describe DomainsController do
 
       it "should return a txt attachment" do
         get :export_zone, :id => domain.id, :dns_zone_id => dns_zone.id
-        flash[:notice].should eql("file exported")
+        flash[:notice].should eql("File exported")
       end
     end
   end
