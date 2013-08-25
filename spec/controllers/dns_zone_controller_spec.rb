@@ -17,7 +17,7 @@ describe DnsZonesController do
 
       it "create a new dns_zone when updating" do
         lambda do
-          put :update, {:domain_id => @dns_zone.domain.id, :id => @dns_zone.id, :dns_zone => @attr}
+          put :update, {:domain_id => @dns_zone.domain.slug, :id => @dns_zone.id, :dns_zone => @attr}
         end.should change(DnsZone, :count).by(1)
         @dns_zone[:origin].should_not eq @attr[:origin]
         @dns_zone[:origin].should eq 'foo.com'
@@ -27,13 +27,13 @@ describe DnsZonesController do
       it "create a dup for every resouce_record" do
         # expect{get :index}.to raise_error(CanCan::AccessDenied)
         lambda do
-          put :update, {:domain_id => @dns_zone.domain.id, :id => @dns_zone.id, :dns_zone => @attr}
+          put :update, {:domain_id => @dns_zone.domain.slug, :id => @dns_zone.id, :dns_zone => @attr}
         end.should change(ResourceRecord, :count).by(@dns_zone.resource_records.count)
       end
 
       it "create a dup for a soa section" do
         lambda do
-          put :update, {:domain_id => @dns_zone.domain.id, :id => @dns_zone.id, :dns_zone => @attr}
+          put :update, {:domain_id => @dns_zone.domain.slug, :id => @dns_zone.id, :dns_zone => @attr}
         end.should change(SoaSection, :count).by(1)
       end
 

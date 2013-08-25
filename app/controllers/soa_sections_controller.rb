@@ -21,7 +21,7 @@ class SoaSectionsController < ApplicationController
   def create
     @dns_zone = DnsZone.find(params[:dns_zone_id])
     @soa_section = SoaSection.new(soa_section_params.merge({:user_id => current_user.id}))
-
+    @soa_section.dns_zone = @dns_zone
     respond_to do |format|
       if @soa_section.save
         @dns_zone.soa_section = @soa_section

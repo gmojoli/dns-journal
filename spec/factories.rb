@@ -43,6 +43,12 @@ FactoryGirl.define do
     s.association :user
   end
 
+  factory :invalid_soa_section, parent: :soa_section do |s|
+    s.primary_domain_name nil
+    s.association :dns_zone
+    s.association :user
+  end
+
   factory :resource_record do |rr|
     rr.resource_type 'MX'
     rr.value 'mx.hostname.com'
