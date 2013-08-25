@@ -9,12 +9,6 @@
           %li= msg
   .row
     .large-8.columns
-      = f.label :name
-      %br
-        %span.has-tip{"data-tooltip" => "", :title => "Just the name of your domain"}
-          = f.text_field :name, :placeholder => "http://example.com"
-  .row
-    .large-8.columns
       = f.label :note
       %br
         = f.text_area :note, :placeholder => "..."

@@ -2,7 +2,7 @@ require 'tempfile'
 
 class DomainsController < ApplicationController
 
-  #before_action :set_domain, only: [:show, :edit, :update, :destroy]
+  before_action :set_domain, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
@@ -120,7 +120,7 @@ class DomainsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_domain
-      unless @domain = current_user.domains.where(id: params[:id]).first
+      unless @domain = Domain.friendly.find(params[:id])
         flash[:alert] = 'Domain not found.'
         redirect_to domains_url
       end

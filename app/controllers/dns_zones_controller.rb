@@ -1,7 +1,7 @@
 class DnsZonesController < ApplicationController
   before_action :set_dns_zone, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  load_and_authorize_resource :domain
+  load_and_authorize_resource :domain, :find_by => :slug
   load_and_authorize_resource :dns_zone, :through => :domain
 
   # GET /dns_zones
@@ -27,7 +27,7 @@ class DnsZonesController < ApplicationController
   # POST /dns_zones
   # POST /dns_zones.json
   def create
-    @domain = Domain.find(params[:domain_id])
+    @domain = Domain.friendly.find(params[:id])
     @dns_zone = @domain.dns_zones.create(dns_zone_params.merge({:version => 1}))
     if @dns_zone.save
       redirect_to @domain, notice: 'Dns zone was successfully created.'
