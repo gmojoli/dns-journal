@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '  ~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'#, '~> 4.0.0.rc2'
@@ -75,7 +77,6 @@ group :development, :test do
   gem "ffaker"
   gem 'factory_girl_rails'
   gem 'database_cleaner', '1.0.1'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload'
@@ -84,8 +85,16 @@ group :development, :test do
   gem 'webrat'
 end
 
+group :darwin do
+  # gem 'rb-fsevent' , :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
+end
+
 gem 'rails_admin', :github => 'sferik/rails_admin'
 
 gem 'high_voltage'
 
 gem 'friendly_id', '5.0.0.beta4' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
+gem 'rails_12factor', group: :production
+
