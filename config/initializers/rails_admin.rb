@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
 
-  config.attr_accessible_role { :admin }
+  # config.attr_accessible_role { :admin }
 
   config.authenticate_with {} # leave it to authorize
 
