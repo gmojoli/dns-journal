@@ -27,12 +27,13 @@ class DnsZonesController < ApplicationController
   # POST /dns_zones
   # POST /dns_zones.json
   def create
-    @domain = Domain.friendly.find(params[:id])
+    @domain = Domain.friendly.find(params[:domain_id])
     @dns_zone = @domain.dns_zones.create(dns_zone_params.merge({:version => 1}))
     if @dns_zone.save
       redirect_to @domain, notice: 'Dns zone was successfully created.'
     else
-      redirect_to @domain, alert: "Dns zone validation failed. #{@dns_zone.errors.messages}"
+      @dns_zone_errors = @dns_zones.errors
+      redirect_to @domain, alert: "Dns zone validation failed."
     end
   end
 
@@ -48,7 +49,10 @@ class DnsZonesController < ApplicationController
         format.html { redirect_to @dns_zone.domain, notice: 'Dns zone was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Dns zone validation failed. #{zone.errors.messages}" }
+        format.html do
+          @dns_zone_errors = @dns_zones.errors
+          redirect_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Dns zone validation failed."
+        end
         format.json { render json: @dns_zone.errors, status: :unprocessable_entity }
       end
     end
