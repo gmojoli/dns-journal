@@ -1,3 +1,9 @@
+
+== DEPLOYED
+
+Deployed (MVP) here: http://calm-gorge-1095.herokuapp.com/
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the
