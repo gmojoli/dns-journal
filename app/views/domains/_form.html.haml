@@ -9,6 +9,11 @@
           %li= msg
   .row
     .large-8.columns
+      = f.label :name
+      %br
+        = f.text_field :name, :placeholder => "..."
+  .row
+    .large-8.columns
       = f.label :note
       %br
         = f.text_area :note, :placeholder => "..."
