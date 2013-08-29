@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130825132138) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "dns_zones", force: true do |t|
     t.string   "admin_email"
     t.integer  "version"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.integer  "user_id"
   end
 
-  add_index "dns_zones", ["user_id"], name: "index_dns_zones_on_user_id"
+  add_index "dns_zones", ["user_id"], name: "index_dns_zones_on_user_id", using: :btree
 
   create_table "domains", force: true do |t|
     t.string   "name"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.string   "slug"
   end
 
-  add_index "domains", ["user_id"], name: "index_domains_on_user_id"
+  add_index "domains", ["user_id"], name: "index_domains_on_user_id", using: :btree
 
   create_table "domains_dns_zones", force: true do |t|
     t.integer "domain_id"
@@ -53,10 +56,10 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -64,12 +67,12 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 5
+    t.integer  "year",       limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "resource_records", force: true do |t|
     t.string   "value"
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.integer  "user_id"
   end
 
-  add_index "resource_records", ["user_id"], name: "index_resource_records_on_user_id"
+  add_index "resource_records", ["user_id"], name: "index_resource_records_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -114,7 +117,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.integer  "user_id"
   end
 
-  add_index "soa_sections", ["user_id"], name: "index_soa_sections_on_user_id"
+  add_index "soa_sections", ["user_id"], name: "index_soa_sections_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -133,7 +136,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.string   "surname"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
