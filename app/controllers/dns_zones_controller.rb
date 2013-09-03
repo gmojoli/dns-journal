@@ -32,8 +32,8 @@ class DnsZonesController < ApplicationController
     if @dns_zone.save
       redirect_to @domain, notice: 'Dns zone was successfully created.'
     else
-      @dns_zone_errors = @dns_zones.errors
-      redirect_to @domain, alert: "Dns zone validation failed."
+      @errors = @dns_zone.errors
+      render action: :new, alert: "Dns zone validation failed."
     end
   end
 
@@ -50,7 +50,7 @@ class DnsZonesController < ApplicationController
         format.json { head :no_content }
       else
         format.html do
-          @dns_zone_errors = @dns_zones.errors
+          @errors = @dns_zone.errors
           redirect_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Dns zone validation failed."
         end
         format.json { render json: @dns_zone.errors, status: :unprocessable_entity }
