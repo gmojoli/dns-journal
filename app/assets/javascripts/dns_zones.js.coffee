@@ -2,11 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on "click", "#hide_rr_section", (event) ->
-  # console.log(event)
-  event.preventDefault() # Prevent link from following its href
-  $(".rr_section_form").toggle()
-  $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
+
 
 $(document).on "change", "[data-purpose=\"show-types\"]", (e) ->
 
@@ -21,3 +17,12 @@ $(document).on "change", "[data-purpose=\"show-types\"]", (e) ->
     $(".rr_name").css "display", "none"
   else
     $(".rr_name").css "display", "block"
+
+hide = ->
+  $(document).on "click", "#hide_rr_section", (event) ->
+    event.preventDefault() # Prevent link from following its href
+    $(".rr_section_form").toggle()
+    $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
+
+$(document).ready(hide)
+$(document).on('page:load', hide)
