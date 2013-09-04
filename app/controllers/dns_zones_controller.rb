@@ -32,8 +32,8 @@ class DnsZonesController < ApplicationController
     if @dns_zone.save
       redirect_to @domain, notice: 'Dns zone was successfully created.'
     else
-      @errors = @dns_zone.errors
-      render action: :new, alert: "Dns zone validation failed."
+      # redirect_to @domain, @errors => @dns_zone.errors, alert: "Dns zone validation failed."
+      render action: 'edit', @errors => @dns_zone.errors, alert: "Dns zone validation failed."
     end
   end
 
