@@ -90,11 +90,9 @@ class DomainsController < ApplicationController
         format.html do
           begin
             file_content = "#{header}\n"
-            # file_content.concat ";\n"
             file_content.concat "$ORIGIN #{dns_zone.origin}.\n$TTL #{dns_zone.ttl}\n"
-            # file_content.concat ";\n"
-            file_content.concat "#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name} #{dns_zone.admin_email}. "
             if dns_zone.soa_section
+              file_content.concat "#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name} #{dns_zone.admin_email}. "
               file_content.concat "(\n\t#{dns_zone.soa_section.serial_number} ; serial\n\t#{dns_zone.soa_section.refresh} ; refresh after #{dns_zone.soa_section.refresh} seconds\n\t#{dns_zone.soa_section.retry} ; retry after #{dns_zone.soa_section.retry} seconds\n\t#{dns_zone.soa_section.expire} ; expire after #{dns_zone.soa_section.expire} seconds\n\t#{dns_zone.soa_section.negative_caching} ; negative caching\n)\n"
             end
             file_content.concat "; -- resource records\n"
@@ -108,9 +106,10 @@ class DomainsController < ApplicationController
             # end
             send_data( file_content, :filename => "#{@domain.name}.txt" )
             flash[:notice] = 'File exported'
-          rescue
-            flash[:alert] = 'Something went wrong...' #TODO
-            raise
+          rescue Exception => e
+            flash[:alert] = "Something went wrong... (#{e.message})"
+          ensure
+            # can't render the flash?
           end
         end
       end
