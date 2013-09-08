@@ -17,7 +17,7 @@ describe DomainsController do
       let(:data_options) { {filename: "data.txt", disposition: 'attachment', type: 'text/plain; charset=utf-8; header=present'} }
 
       it "should return a txt attachment" do
-        get :export_zone, :id => domain.id, :dns_zone_id => dns_zone.id
+        get :export_zone, :id => domain.id, :dns_zone => dns_zone.id
         flash[:notice].should eql("File exported")
       end
     end

@@ -1,9 +1,23 @@
+
 * {
   margin: 0;
 }
 
 html, body {
   height: 100%;
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  background-color: white;
+  h1, h2, h3{
+    color: black;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  label{
+    color: black;
+  }
+  fieldset legend{
+    background: transparent;
+  }
 }
 
 .wrapper {
@@ -60,5 +74,21 @@ p.alert {
   ul li {
     font-size: 12px;
     list-style: square;
+  }
+}
+
+.side_panel{
+  text-align: center;
+}
+
+$my_blue: #2ba6cb;
+
+.top-bar{
+  background: black;
+  .top-bar-section .dropdown li label{
+    background: black;
+  }
+  li a:not(.button){
+    background: black;
   }
 }

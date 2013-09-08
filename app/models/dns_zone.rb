@@ -10,7 +10,7 @@ class DnsZone < ActiveRecord::Base
   validates :origin, :presence => { :message => "origin is required" }
   validates :origin, :uniqueness => { :if => :first?, :scope => :user, :message => 'origin must be unique for the user'}
   validates :ttl, :numericality => { :only_integer => true }, :allow_nil => true
-  validates :admin_email, :email => {:message => "invalid email"}, :allow_nil => true
+  validates :admin_email, :email => {:message => "invalid email"}, :allow_blank => true
   validates_format_of :origin, :with => /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(\/.*)?\z/ix, :message => "name must include the Top-Level domain name: example.com"
 
   scope :max_version, -> { DnsZone.where(:origin => self[:origin]).order("version DESC").first }
