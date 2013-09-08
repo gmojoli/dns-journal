@@ -29,7 +29,7 @@
                 = precede ' | ' do
                   = link_to 'Destroy', domain_dns_zone_path(@domain, dns_zone), method: :delete, data: { confirm: 'Are you sure?' }
                 = precede ' | ' do
-                  = link_to 'Export', export_path(@domain, dns_zone.id)
+                  = link_to 'Export', export_path(@domain, dns_zone)
   - else
     = @errors
     .new_dns_zone
