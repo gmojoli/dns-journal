@@ -42,7 +42,7 @@ class SoaSectionsController < ApplicationController
         format.html { redirect_to domain_dns_zone_path(@soa_section.dns_zone.domain, @soa_section.dns_zone), notice: 'Soa section was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "SoaSection validation failed: #{@soa_section.errors.messages}" }
+        format.html { redirect_to edit_domain_dns_zone_soa_section_path(@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section), alert: "SoaSection validation failed: #{@soa_section.errors.messages}" }
         format.json { render json: @soa_section.errors, status: :unprocessable_entity }
       end
     end

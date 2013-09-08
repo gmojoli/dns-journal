@@ -31,13 +31,9 @@
                 = precede ' | ' do
                   = link_to 'Export', export_path(@domain, dns_zone.id)
   - else
+    = @errors
     .new_dns_zone
-      = simple_form_for [@domain, DnsZone.new] do |f|
-        %p
-          = f.label :origin, "New dns zone: $ORIGIN"
-          %br/
-          = f.text_field :origin
-        %p= f.submit "Add Dns Zone"
+      = render 'dns_zone_form'
 .row
   = link_to 'Edit', edit_domain_path(@domain)
   = precede ' | ' do

@@ -1,6 +1,6 @@
 DnsJournal::Application.routes.draw do
-  
-  
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root 'home#index'
 
@@ -9,13 +9,13 @@ DnsJournal::Application.routes.draw do
   get "home/index"
 
   resources :domains do
-    resources :dns_zones, :only => [:create, :destroy, :show, :edit, :update] do
+    resources :dns_zones, :only => [:new, :create, :destroy, :show, :edit, :update] do
       resources :soa_sections, :only => [:edit, :create, :update, :destroy]
       resources :resource_records, :only => [:show, :edit, :create, :update, :destroy]
     end
   end
 
-  get '/domains/:id/export/:dns_zone_id' => 'domains#export_zone', as: :export
+  get '/domains/:id/export/:dns_zone' => 'domains#export_zone', as: :export
   get '/domains/:id/select/:dns_zone' => 'domains#select_dns_zone', as: :select
 
   # The priority is based upon order of creation: first created -> highest priority.

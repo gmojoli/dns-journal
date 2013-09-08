@@ -1,3 +1,10 @@
 %h1 New dns_zone
-= render 'form'
-= link_to 'Back', dns_zones_path
+- if @dns_zone.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@dns_zone.errors.count, "error")
+      prohibited this dns_zone from being saved:
+    %ul
+      - @dns_zone.errors.full_messages.each do |msg|
+        %li= msg
+= link_to 'Back', domain_path(@domain.id)
