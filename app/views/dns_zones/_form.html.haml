@@ -7,20 +7,21 @@
       %ul
         - @dns_zone.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :version
-    %br
-      = @dns_zone.version
-  .field
-    $ORIGIN
-    %br
-      %span.has-tip{"data-tooltip" => "", :title => " $ORIGIN must include the Top-Level domain name: example.com"}
+  .row
+    .large-4.columns
+      .field
+        = f.label :version
+        %br
+          = @dns_zone.version
+    .large-4.columns
+      .field
+        %span.has-tip{"data-tooltip" => "", :title => " $ORIGIN must include the Top-Level domain name: example.com"}
+          = f.label '$ORIGIN'
         = f.text_field :origin
-  .field
-    = f.label :ttl
-    (seconds)
-    %br
-      = f.number_field :ttl
+    .large-4.columns
+      .field
+        = f.label 'TTL (seconds)'
+        = f.number_field :ttl
   .field
     = f.label :admin_email
     %br
