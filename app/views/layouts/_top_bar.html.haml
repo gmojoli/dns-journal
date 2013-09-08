@@ -1,0 +1,39 @@
+%nav.top-bar
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to 'Dns Journal', home_index_path
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span Menu
+  %section.top-bar-section
+    %ul.left
+      %li.divider
+    %ul.right
+      %li.divider
+        %li
+          %a{:href => "#"} Main Item 1
+      %li.divider
+      %li.has-dropdown
+        %a{:href => "#"} Main Item 4
+        %ul.dropdown
+          %li
+            %label Dropdown Level 1 Label
+          %li.has-dropdown
+            %a{:href => "#"} Dropdown Level 1a
+          %li
+            %a{:href => "#"} Dropdown Level 1b
+          %li
+            %a{:href => "#"} Dropdown Level 1c
+          %li.divider
+          %li
+            %label Dropdown Level 1 Label
+          %li
+            %a{:href => "#"} Dropdown Level 1d
+          %li
+            %a{:href => "#"} Dropdown Level 1e
+          %li
+            %a{:href => "#"} Dropdown Level 1f
+          %li.divider
+          %li
+            %a{:href => "#"} See all →
