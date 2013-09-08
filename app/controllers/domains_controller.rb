@@ -2,7 +2,8 @@ require 'tempfile'
 
 class DomainsController < ApplicationController
 
-  before_action :set_domain, only: [:show, :edit, :update, :destroy]
+  # Gotcha! Custom find here...
+  before_action :set_domain, only: [:show, :edit, :update, :destroy, :export_zone]
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
@@ -83,8 +84,7 @@ class DomainsController < ApplicationController
   end
 
   def export_zone
-    dns_zone = DnsZone.find(params[:dns_zone_id])
-
+    dns_zone = DnsZone.find(params[:dns_zone])
     respond_to do |format|
       if dns_zone
         format.html do
