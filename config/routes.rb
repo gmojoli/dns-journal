@@ -15,7 +15,7 @@ DnsJournal::Application.routes.draw do
     end
   end
 
-  get '/domains/:id/export/:dns_zone_id' => 'domains#export_zone', as: :export
+  get '/domains/:id/export/:dns_zone' => 'domains#export_zone', as: :export
   get '/domains/:id/select/:dns_zone' => 'domains#select_dns_zone', as: :select
 
   # The priority is based upon order of creation: first created -> highest priority.
