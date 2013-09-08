@@ -30,10 +30,10 @@ describe SoaSectionsController, :type => [:controller] do
         }.to_not change(SoaSection,:count)
       end
 
-      it "re-renders the new method" do
+      it "re-renders the edit method" do
         post :create, :domain_id => @dns_zone.domain.slug, :dns_zone_id => @dns_zone.id, soa_section: FactoryGirl.attributes_for(:invalid_soa_section)
-        response.should redirect_to(domain_dns_zone_path(@dns_zone.domain, @dns_zone))
-        flash[:notice].should eql("Soa section was successfully created.")
+        response.should render_template('edit')
+        flash[:alert].should match("failed")
       end
     end
   end
@@ -43,11 +43,11 @@ describe SoaSectionsController, :type => [:controller] do
     before(:each) do
       @dns_zone = create(:dns_zone, :user => @user)
       @soa_section = @dns_zone.soa_section
-      put :update, {:domain_id => @soa_section.dns_zone.domain.slug, :dns_zone_id => @soa_section.dns_zone.id, :id => @soa_section.id,  :soa_section => {primary_domain_name: 'updated.foo.com'} }
     end
 
     it "increment also the revision value and the serial_number" do
       old_serial_number = @soa_section.serial_number
+      put :update, {:domain_id => @soa_section.dns_zone.domain.slug, :dns_zone_id => @soa_section.dns_zone.id, :id => @soa_section.id,  :soa_section => {primary_domain_name: 'updated.foo.com'} }
       @soa_section.reload
       expect(@soa_section.revision).to eq 2
       expect(@soa_section.serial_number).to eq(old_serial_number + 1)
