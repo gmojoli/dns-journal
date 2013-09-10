@@ -12,7 +12,7 @@ class DomainsController < ApplicationController
   # GET /domains
   # GET /domains.json
   def index
-    @domains = current_user.domains
+    @domains = current_user.domains || []
   end
 
   # GET /domains/1
