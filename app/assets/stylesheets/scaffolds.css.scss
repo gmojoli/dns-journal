@@ -14,9 +14,15 @@ html, body {
   }
   label{
     color: black;
+    margin-bottom: 5px;
   }
   fieldset legend{
     background: transparent;
+  }
+  input{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
   }
 }
 

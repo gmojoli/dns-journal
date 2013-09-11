@@ -50,6 +50,7 @@ class DnsZonesController < ApplicationController
       else
         format.html do
           flash[:alert] = "Dns zone validation failed."
+          @dns_zone = zone
           render action: :edit
         end
         format.json { render json: @dns_zone.errors, status: :unprocessable_entity }
