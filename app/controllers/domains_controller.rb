@@ -7,7 +7,7 @@ class DomainsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
-  VERSION = 0.2
+  VERSION = 0.2.1
 
   # GET /domains
   # GET /domains.json
