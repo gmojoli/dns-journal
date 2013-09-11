@@ -5,8 +5,7 @@
     %li
       = link_to "#{domain.name}", domain
       = precede ' | ' do
-        %i{class: "fi-clock"}
-          clock
-        = link_to '(delete)', domain, method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to domain, method: :delete, data: { confirm: 'Are you sure?' } do
+          %i{class: "fi-trash"}
 %br
   = link_to 'New Domain', new_domain_path, { :class => "button" }
