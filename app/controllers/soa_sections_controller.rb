@@ -22,6 +22,7 @@ class SoaSectionsController < ApplicationController
     @dns_zone = DnsZone.find(params[:dns_zone_id])
     @soa_section = SoaSection.new(soa_section_params.merge({:user_id => current_user.id}))
     @soa_section.dns_zone = @dns_zone
+    @soa_section.primary_domain_name = @dns_zone.origin.concat('.')
     respond_to do |format|
       if @soa_section.save
         @dns_zone.soa_section = @soa_section
@@ -68,7 +69,7 @@ class SoaSectionsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_soa_section
-      unless @soa_section = current_user.soa_sections.where(id: params[:id]).first
+      unless @soa_section = SoaSection.find(params[:id])
         flash[:alert] = 'SoaSection not found.'
         redirect_to domains_url
       end
