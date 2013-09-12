@@ -24,38 +24,16 @@
   #soa_section
     %fieldset
       %legend Start of Authority (SOA)
-      - if @dns_zone.soa_section
+      - unless @dns_zone.soa_section.new_record?
         .panel
           %code
-            = "#{@dns_zone.origin} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.primary_domain_name} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
-        %table
-          %thead
-            %tr
-              %th Primary Domain Name
-              %th Zone Class
-              %th
-              %th Serial Number
-              %th Refresh
-              %th Retry
-              %th Expire
-              %th Negative Caching
-          %tbody
-            %tr
-              %td
-                = "#{@dns_zone.soa_section.primary_domain_name}"
-              %td= "#{@dns_zone.soa_section.zone_class}"
-              %td SOA
-              %td= "#{@dns_zone.soa_section.serial_number}"
-              %td= "#{@dns_zone.soa_section.refresh}"
-              %td= "#{@dns_zone.soa_section.retry}"
-              %td= "#{@dns_zone.soa_section.expire}"
-              %td= "#{@dns_zone.soa_section.negative_caching}"
+            = "#{@dns_zone.soa_section.primary_domain_name} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.mname} #{@dns_zone.soa_section.rname} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
         %p
           = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section)
           = precede ' | ' do
             = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }
       - else
-        = render 'soa_section_form'
+        = render 'soa_sections/form'
   .rr_section
     %fieldset
       %legend
