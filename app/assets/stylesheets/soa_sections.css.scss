@@ -1,3 +1,15 @@
 // Place all the styles related to the soa_sections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.soa_numbers{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.soa_explain_panel{
+  .panel{
+    background: white;
+    border-style: dotted;
+  }
+}

@@ -1,5 +1,5 @@
-= simple_form_for [@soa_section.dns_zone.domain, @soa_section.dns_zone, @soa_section] do |f|
-  - if @soa_section.errors.any?
+= simple_form_for [@dns_zone.domain, @dns_zone, @soa_section] do |f|
+  - if @soa_section && @soa_section.errors.any?
     #error_explanation
       %h2
         = pluralize(@soa_section.errors.count, "error")
@@ -7,41 +7,42 @@
       %ul
         - @soa_section.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :primary_domain_name
-    %br
-      = f.text_field :primary_domain_name
-  .field
-    = f.label :mname
-    %br
-      %em The master dns server for the zone (for example ns1.debiantest.com.)
-      %br
+
+  .row
+    .large-6.columns
+      .field
+        = f.label :mname, 'MNAME'
         = f.text_field :mname
-  .field
-    = f.label :rname
-    %br
-      %em An email address for someone responsible for the domain (with the @ replaced with a .) such as nospam.debiantest.com
-      %br
+    .large-6.columns
+      .soa_explain_panel
+        .panel The master dns server for the zone
+  .row
+    .large-6.columns
+      .field
+        = f.label :rname, 'RNAME'
         = f.text_field :rname
-  .field
-    = f.label :serial_number
-    %br
-      = @soa_section.serial_number
-  .field
-    = f.label :refresh
-    %br
-      = f.number_field :refresh
-  .field
-    = f.label :retry
-    %br
-      = f.number_field :retry
-  .field
-    = f.label :expire
-    %br
-      = f.number_field :expire
-  .field
-    = f.label :negative_caching
-    %br
-      = f.number_field :negative_caching
-  .actions
-    = f.submit nil, :class => "button"
+    .large-6.columns
+      .soa_explain_panel
+        .panel An email address for someone responsible for the domain (with the @ replaced with a .)
+  .row
+    .soa_numbers
+      .large-3.columns
+        .field
+          = f.label :refresh
+          = f.number_field :refresh
+      .large-3.columns
+        .field
+          = f.label :retry
+          = f.number_field :retry
+      .large-3.columns
+        .field
+          = f.label :expire
+          = f.number_field :expire
+      .large-3.columns
+        .field
+          = f.label :negative_caching
+          = f.number_field :negative_caching
+  .row
+    .large-6.columns
+      .actions
+        = f.submit nil, :class => "button"
