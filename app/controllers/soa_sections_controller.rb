@@ -1,7 +1,7 @@
 class SoaSectionsController < ApplicationController
 
   before_filter :authenticate_user!
-  # before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
+  before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource :dns_zone
   load_and_authorize_resource :soa_section, :through => :dns_zone, :singleton => true
