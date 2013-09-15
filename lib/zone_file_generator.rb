@@ -1,4 +1,5 @@
 class ZoneFileGenerator
+  @queue = :zone_file_queue
 
   class << self
 
@@ -19,6 +20,10 @@ class ZoneFileGenerator
       #   f.print file_content
       #   f.flush
       # end
+    end
+
+    def self.perform(snippet_id)
+
     end
 
     private
