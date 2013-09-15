@@ -1,7 +1,7 @@
 class SoaSectionsController < ApplicationController
 
   before_filter :authenticate_user!
-  # before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
+  before_action :set_soa_section, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource :dns_zone
   load_and_authorize_resource :soa_section, :through => :dns_zone, :singleton => true
@@ -13,7 +13,6 @@ class SoaSectionsController < ApplicationController
 
   # GET /soa_sections/1/edit
   def edit
-    # TODO: remove and edit in show dns_zone
   end
 
   # POST /soa_sections
@@ -77,6 +76,6 @@ class SoaSectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def soa_section_params
-      params.require(:soa_section).permit(:primary_domain_name, :zone_class, :mname, :rname, :serial_number, :refresh, :retry, :expire, :negative_caching)
+      params.require(:soa_section).permit(:primary_domain_name, :zone_class, :mname, :rname, :serial_number, :refresh, :retry, :expire, :minimum)
     end
 end

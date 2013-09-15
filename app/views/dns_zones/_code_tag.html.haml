@@ -1,0 +1,19 @@
+%code
+  = "#{dns_zone.soa_section.primary_domain_name} #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.mname} #{dns_zone.soa_section.rname} ("
+  %br
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  = "#{dns_zone.soa_section.serial_number}"
+  %br
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  = "#{dns_zone.soa_section.refresh}"
+  %br
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  = " #{dns_zone.soa_section.retry}"
+  %br
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  = " #{dns_zone.soa_section.expire}"
+  %br
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  = " #{dns_zone.soa_section.minimum}"
+  %br
+  = ") ;"

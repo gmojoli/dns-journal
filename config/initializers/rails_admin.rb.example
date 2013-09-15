@@ -60,24 +60,24 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
-  #     configure :soa_section, :has_one_association 
-  #     configure :resource_records, :has_many_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
+  #     configure :soa_section, :has_one_association
+  #     configure :resource_records, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :admin_email, :string 
-  #     configure :version, :integer 
-  #     configure :origin, :string 
-  #     configure :ttl, :integer 
-  #     configure :description, :text 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :soa_section_id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :user_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :admin_email, :string
+  #     configure :version, :integer
+  #     configure :origin, :string
+  #     configure :ttl, :integer
+  #     configure :description, :text
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :soa_section_id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :user_id, :integer         # Hidden
 
   #   # Cross-section configuration:
 
@@ -113,18 +113,18 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :user, :belongs_to_association 
-  #     configure :dns_zones, :has_many_association 
+  #     configure :user, :belongs_to_association
+  #     configure :dns_zones, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :current_dns_zone, :integer 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :note, :text 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :current_dns_zone, :integer
+  #     configure :user_id, :integer         # Hidden
+  #     configure :note, :text
 
   #   # Cross-section configuration:
 
@@ -160,22 +160,22 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :dns_zone, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :dns_zone, :belongs_to_association
+  #     configure :user, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :value, :string 
-  #     configure :rfc, :string 
-  #     configure :description, :text 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :dns_zone_id, :integer         # Hidden 
-  #     configure :resource_type, :string 
-  #     configure :name, :string 
-  #     configure :option, :string 
-  #     configure :user_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :value, :string
+  #     configure :rfc, :string
+  #     configure :description, :text
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :dns_zone_id, :integer         # Hidden
+  #     configure :resource_type, :string
+  #     configure :name, :string
+  #     configure :option, :string
+  #     configure :user_id, :integer         # Hidden
 
   #   # Cross-section configuration:
 
@@ -211,14 +211,14 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :users, :has_and_belongs_to_many_association 
+  #     configure :users, :has_and_belongs_to_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -254,26 +254,26 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :dns_zone, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :dns_zone, :belongs_to_association
+  #     configure :user, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :primary_domain_name, :string 
-  #     configure :zone_class, :string 
-  #     configure :mname, :string 
-  #     configure :rname, :string 
-  #     configure :serial_number, :integer 
-  #     configure :refresh, :integer 
-  #     configure :retry, :integer 
-  #     configure :expire, :integer 
-  #     configure :negative_caching, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :dns_zone_id, :integer         # Hidden 
-  #     configure :revision, :integer 
-  #     configure :user_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :primary_domain_name, :string
+  #     configure :zone_class, :string
+  #     configure :mname, :string
+  #     configure :rname, :string
+  #     configure :serial_number, :integer
+  #     configure :refresh, :integer
+  #     configure :retry, :integer
+  #     configure :expire, :integer
+  #     configure :minimum, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :dns_zone_id, :integer         # Hidden
+  #     configure :revision, :integer
+  #     configure :user_id, :integer         # Hidden
 
   #   # Cross-section configuration:
 
@@ -309,30 +309,30 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :domains, :has_many_association 
-  #     configure :dns_zones, :has_many_association 
-  #     configure :soa_sections, :has_many_association 
-  #     configure :resource_records, :has_many_association 
-  #     configure :roles, :has_and_belongs_to_many_association 
+  #     configure :domains, :has_many_association
+  #     configure :dns_zones, :has_many_association
+  #     configure :soa_sections, :has_many_association
+  #     configure :resource_records, :has_many_association
+  #     configure :roles, :has_and_belongs_to_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :name, :string 
-  #     configure :surname, :string 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :name, :string
+  #     configure :surname, :string
 
   #   # Cross-section configuration:
 
