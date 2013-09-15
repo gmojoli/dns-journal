@@ -21,7 +21,7 @@ class DnsZone < ActiveRecord::Base
 
   def init
     self.version  ||= 1
-    self.ttl ||= 0
+    self.ttl ||= 14400
   end
 
   def new_version
