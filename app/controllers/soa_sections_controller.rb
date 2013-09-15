@@ -13,7 +13,6 @@ class SoaSectionsController < ApplicationController
 
   # GET /soa_sections/1/edit
   def edit
-    # TODO: remove and edit in show dns_zone
   end
 
   # POST /soa_sections
