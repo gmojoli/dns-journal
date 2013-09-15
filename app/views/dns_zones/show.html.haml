@@ -78,8 +78,8 @@
       %fieldset
         %legend
           New Resource Record
-          = precede ' - ' do
-            = link_to 'Show more', '#', :id => 'hide_rr_section', 'data-no-turbolink' => true
+          / = precede ' - ' do
+          /   = link_to 'Show more', '#', :id => 'hide_rr_section'
         .rr_section_form
           = render 'rr_form'
 %ul.button-group
