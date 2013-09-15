@@ -27,7 +27,7 @@
       - unless @dns_zone.soa_section.new_record?
         .panel
           %code
-            = "#{@dns_zone.soa_section.primary_domain_name} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.mname} #{@dns_zone.soa_section.rname} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
+            = "#{@dns_zone.soa_section.primary_domain_name} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.mname} #{@dns_zone.soa_section.rname} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.minimum}) ;"
         %p
           = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section)
           = precede ' | ' do

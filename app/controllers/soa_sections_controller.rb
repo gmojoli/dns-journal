@@ -77,6 +77,6 @@ class SoaSectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def soa_section_params
-      params.require(:soa_section).permit(:primary_domain_name, :zone_class, :mname, :rname, :serial_number, :refresh, :retry, :expire, :negative_caching)
+      params.require(:soa_section).permit(:primary_domain_name, :zone_class, :mname, :rname, :serial_number, :refresh, :retry, :expire, :minimum)
     end
 end
