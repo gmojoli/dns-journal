@@ -5,17 +5,19 @@ class SoaSection < ActiveRecord::Base
   validates :dns_zone, presence: true
   validates :user_id, presence: true
   validates :primary_domain_name, :presence => true
-  validates :serial_number, :refresh, :retry, :expire, :negative_caching, :numericality => { :only_integer => true }
+  validates :mname, :presence => true
+  validates :rname, :presence => true
+  validates :serial_number, :refresh, :retry, :expire, :minimum, :numericality => { :only_integer => true }
 
   after_initialize :init
 
   def init
     self.serial_number ||= (Time.now.strftime("%Y%m%d") + (sprintf '%02d', max_revision.to_s)).to_i
-    self.refresh ||= 0
-    self.retry ||= 0
-    self.expire ||= 0
+    self.refresh ||= 86000
+    self.retry ||= 7200
+    self.expire ||= 3600000
+    self.minimum ||= 600
     self.revision ||= 1
-    self.negative_caching ||= 0
   end
 
   def zone_class
