@@ -3,6 +3,12 @@
     .large-12.columns
       %h3
         Domain: #{link_to "#{@dns_zone.domain.name}", domain_path(@dns_zone.domain)}
+      %p.little_info
+        Created:
+        = @dns_zone.domain.created_at.strftime('%d.%m.%y %H:%M')
+        ;
+        Last update:
+        = @dns_zone.domain.updated_at.strftime('%d.%m.%y %H:%M')
 
   .row
     %fieldset
