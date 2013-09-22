@@ -1,4 +1,6 @@
-class ZoneFileGenerator
+require 'tempfile'
+
+class ZoneFileGenerator < ActionController::Base
   @queue = :zone_file_queue
 
   class << self
@@ -16,14 +18,20 @@ class ZoneFileGenerator
         file_content.concat "; #{ResourceRecord.definitions.fetch(rr.resource_type)[0]}\n"
         file_content.concat "#{rr.to_code_string}\n"
       end
-      # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
-      #   f.print file_content
-      #   f.flush
-      # end
     end
 
-    def self.perform(snippet_id)
-
+    def perform(dns_zone_id, version)
+      dns_zone = DnsZone.find(dns_zone_id)
+      if dns_zone
+        file_content = self.generate_file_content(dns_zone, version)
+        file = "#{dns_zone.domain.name}.txt"
+        Tempfile.open(file, Rails.root.join('tmp') ) do |f|
+          f.print file_content
+          f.flush
+        end
+        send_file( file )
+        # send_data( file_content, :filename => "#{@domain.name}.txt" )
+      end
     end
 
     private

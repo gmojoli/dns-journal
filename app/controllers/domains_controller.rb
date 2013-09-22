@@ -90,13 +90,12 @@ class DomainsController < ApplicationController
       if dns_zone
         format.html do
           begin
-            file_content = ZoneFileGenerator.generate_file_content(dns_zone, VERSION)
-            send_data( file_content, :filename => "#{@domain.name}.txt" )
+            Resque.enqueue(ZoneFileGenerator, dns_zone.id, VERSION)
             flash[:notice] = 'File exported'
           rescue Exception => e
             flash[:alert] = "Something went wrong... (#{e.message})"
           ensure
-            # can't render the flash?
+            render action: :show
           end
         end
       end
