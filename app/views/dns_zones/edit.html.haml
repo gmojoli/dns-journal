@@ -6,4 +6,7 @@
     = succeed ')' do
       = @dns_zone.version
 = render 'form'
-= link_to 'Back', domain_dns_zone_path(@dns_zone.domain, @dns_zone)
+- if @dns_zone.new_record?
+  = link_to 'Cancel', domain_path(@dns_zone.domain)
+- else
+  = link_to 'Back', domain_dns_zone_path(@dns_zone.domain, @dns_zone)

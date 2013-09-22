@@ -9,7 +9,7 @@ one:
   refresh: 1
   retry: 1
   expire: 1
-  negative_caching: 1
+  minimum: 1
 
 two:
   primary_domain_name: MyString
@@ -20,4 +20,4 @@ two:
   refresh: 1
   retry: 1
   expire: 1
-  negative_caching: 1
+  minimum: 1

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825132138) do
+ActiveRecord::Schema.define(version: 20130915100656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20130825132138) do
     t.integer  "refresh"
     t.integer  "retry"
     t.integer  "expire"
-    t.integer  "negative_caching"
+    t.integer  "minimum"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dns_zone_id"

@@ -1,4 +1,5 @@
 require 'tempfile'
+require 'zone_file_generator'
 
 class DomainsController < ApplicationController
 
@@ -7,7 +8,7 @@ class DomainsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
-  VERSION = '0.2.3'
+  VERSION = '0.3.0'
 
   # GET /domains
   # GET /domains.json
@@ -89,21 +90,7 @@ class DomainsController < ApplicationController
       if dns_zone
         format.html do
           begin
-            file_content = "#{header}\n"
-            file_content.concat "$ORIGIN #{dns_zone.origin}.\n$TTL #{dns_zone.ttl}\n"
-            if dns_zone.soa_section
-              file_content.concat "#{dns_zone.origin}. #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.primary_domain_name} #{dns_zone.admin_email}. "
-              file_content.concat "(\n\t#{dns_zone.soa_section.serial_number} ; serial\n\t#{dns_zone.soa_section.refresh} ; refresh after #{dns_zone.soa_section.refresh} seconds\n\t#{dns_zone.soa_section.retry} ; retry after #{dns_zone.soa_section.retry} seconds\n\t#{dns_zone.soa_section.expire} ; expire after #{dns_zone.soa_section.expire} seconds\n\t#{dns_zone.soa_section.negative_caching} ; negative caching\n)\n"
-            end
-            file_content.concat "; -- resource records\n"
-            Array(dns_zone.resource_records).each do |rr|
-              file_content.concat "; #{ResourceRecord.definitions.fetch(rr.resource_type)[0]}\n"
-              file_content.concat "#{rr.to_code_string}\n"
-            end
-            # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
-            #   f.print file_content
-            #   f.flush
-            # end
+            file_content = ZoneFileGenerator.generate_file_content(dns_zone, VERSION)
             send_data( file_content, :filename => "#{@domain.name}.txt" )
             flash[:notice] = 'File exported'
           rescue Exception => e
@@ -128,10 +115,6 @@ class DomainsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def domain_params
       params.require(:domain).permit(:name, :note)
-    end
-
-    def header
-      "; -- zonefile created with Dns-Journal (#{VERSION}) - #{Date.today}"
     end
 
 end

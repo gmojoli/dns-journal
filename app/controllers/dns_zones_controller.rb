@@ -13,7 +13,10 @@ class DnsZonesController < ApplicationController
   # GET /dns_zones/1
   # GET /dns_zones/1.json
   def show
-    @soa_section = @dns_zone.soa_section || @dns_zone.build_soa_section
+    @soa_section = @dns_zone.soa_section || @dns_zone.build_soa_section(
+      mname: "#{@dns_zone.origin}".concat('.'),
+      rname: "administrator.#{@dns_zone.origin}".concat('.')
+    )
   end
 
   # GET /dns_zones/new

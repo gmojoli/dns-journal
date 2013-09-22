@@ -12,28 +12,20 @@
     %ul.right
       %li.divider
         %li
-          %a{:href => "#"} Main Item 1
+          %a{:href => "#"} About
       %li.divider
       %li.has-dropdown
-        %a{:href => "#"} Main Item 4
+        %a{:href => "#"} Resources
         %ul.dropdown
           %li
-            %label Dropdown Level 1 Label
-          %li.has-dropdown
-            %a{:href => "#"} Dropdown Level 1a
+            %label Links
           %li
-            %a{:href => "#"} Dropdown Level 1b
-          %li
-            %a{:href => "#"} Dropdown Level 1c
+            = link_to 'RFCs', page_path('rfcs')
           %li.divider
           %li
-            %label Dropdown Level 1 Label
+            %label Other
           %li
-            %a{:href => "#"} Dropdown Level 1d
-          %li
-            %a{:href => "#"} Dropdown Level 1e
-          %li
-            %a{:href => "#"} Dropdown Level 1f
+            %a{:href => "#"} Other
           %li.divider
           %li
             %a{:href => "#"} See all →

@@ -281,7 +281,7 @@ RailsAdmin.config do |config|
   #     configure :refresh, :integer
   #     configure :retry, :integer
   #     configure :expire, :integer
-  #     configure :negative_caching, :integer
+  #     configure :minimum, :integer
   #     configure :created_at, :datetime
   #     configure :updated_at, :datetime
   #     configure :dns_zone_id, :integer         # Hidden

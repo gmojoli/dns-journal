@@ -1,6 +1,7 @@
 = simple_form_for [@domain, DnsZone.new] do |f|
   %p
     = f.label :origin, "New dns zone: $ORIGIN"
-    %br/
-    = f.text_field :origin
-  %p= f.submit "Add Dns Zone"
+    %br
+    = f.text_field :origin, required: 'true'
+  %p
+    = f.submit "create Dns Zone", class: 'button'

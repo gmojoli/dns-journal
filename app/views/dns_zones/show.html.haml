@@ -3,35 +3,43 @@
     .large-12.columns
       %h3
         Domain: #{link_to "#{@dns_zone.domain.name}", domain_path(@dns_zone.domain)}
-        %br
-        DNS_ZONE for #{@dns_zone.origin}
+      %p.little_info
+        Created:
+        = @dns_zone.domain.created_at.strftime('%d.%m.%y %H:%M')
+        ;
+        Last update:
+        = @dns_zone.domain.updated_at.strftime('%d.%m.%y %H:%M')
 
   .row
-    .large-8.columns
-      .panel
-        %code
-          $ORIGIN #{@dns_zone.origin} ;
-          %br
-          $TTL #{@dns_zone.ttl} ;
-          %br
-          ; Admin email: #{@dns_zone.admin_email}
-    .large-4.columns
-      %ul.button-group{:style => "margin-top: 10px;"}
-        %li
-          = link_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone) do
-            %i{class: "fi-pencil"}
+    %fieldset
+      %legend
+        DNS_ZONE for #{@dns_zone.origin}
+      .large-8.columns
+        .panel
+          %code
+            $ORIGIN #{@dns_zone.origin} ;
+            %br
+            $TTL #{@dns_zone.ttl} ;
+            %br
+            ; Admin email: #{@dns_zone.admin_email}
+      .large-4.columns
+        %ul.button-group{:style => "margin-top: 10px;"}
+          %li
+            = link_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone) do
+              %i{class: "fi-pencil"} edit
 .row
   #soa_section
     %fieldset
       %legend Start of Authority (SOA)
       - unless @dns_zone.soa_section.new_record?
         .panel
-          %code
-            = "#{@dns_zone.soa_section.primary_domain_name} #{@dns_zone.soa_section.zone_class} SOA #{@dns_zone.soa_section.mname} #{@dns_zone.soa_section.rname} (#{@dns_zone.soa_section.serial_number} #{@dns_zone.soa_section.refresh} #{@dns_zone.soa_section.retry} #{@dns_zone.soa_section.expire} #{@dns_zone.soa_section.negative_caching}) ;"
+          = render 'code_tag', dns_zone: @dns_zone
         %p
-          = link_to 'Edit', edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section)
+          = link_to edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section) do
+            %i{class: "fi-pencil"} edit
           = precede ' | ' do
-            = link_to 'Destroy', domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' } do
+              %i{class: "fi-trash"} delete
       - else
         = render 'soa_sections/form'
   .rr_section
@@ -70,8 +78,8 @@
       %fieldset
         %legend
           New Resource Record
-          = precede ' - ' do
-            = link_to 'Show more', '#', :id => 'hide_rr_section', 'data-no-turbolink' => true
+          / = precede ' - ' do
+          /   = link_to 'Show more', '#', :id => 'hide_rr_section'
         .rr_section_form
           = render 'rr_form'
 %ul.button-group
