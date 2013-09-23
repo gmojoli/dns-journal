@@ -5,19 +5,3 @@
         = notice
       %p.alert
         = alert
-%p.navbar-text.pull-right
-  .panel
-    - if user_signed_in?
-      Logged in as
-      = succeed "." do
-        %strong= current_user.email
-      %p
-        = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
-        = precede ' | ' do
-          = link_to("Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link', :data => { :confirm => "Are you sure?" })
-      %p
-        Managing #{current_user.domains.count} #{link_to 'domains', domains_path}
-    - else
-      = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
-      |
-      \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}

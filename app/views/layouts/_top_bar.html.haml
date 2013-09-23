@@ -11,12 +11,27 @@
       %li.divider
     %ul.right
       %li.divider
-        %li
-          %a{:href => "#"} About
+      %li
+        %a{:href => "#"} About
       %li.divider
       %li.has-dropdown
-        %a{:href => "#"} Resources
+        %a{:href => "#"} SignIn/SignUp
         %ul.dropdown
+          - if user_signed_in?
+            %li
+              %label
+                current_user.email
+            %li
+              = link_to 'Edit profile', edit_user_registration_path
+            %li
+              = link_to "Logout", destroy_user_session_path, :method => :delete, :data => { :confirm => "Are you sure?" }
+            %li
+              Managing #{current_user.domains.count} #{link_to 'domains', domains_path}
+          - else
+            %li
+              = link_to "Sign up", new_user_registration_path
+            %li
+              = link_to "Login", new_user_session_path, :class => 'navbar-link'
           %li
             %label Links
           %li
