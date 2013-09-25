@@ -34,7 +34,6 @@ class DomainsController < ApplicationController
   # POST /domains.json
   def create
     @domain = Domain.new(domain_params.merge({:user_id => current_user.id}))
-    # current_user.domains << @domain.user_id = current_user.id
     respond_to do |format|
       if @domain.save
         format.html { redirect_to @domain, notice: 'Domain was successfully created.' }
