@@ -1,46 +1,47 @@
-%nav.top-bar
-  %ul.title-area
-    %li.name
-      %h1
-        = link_to 'Dns Journal', home_index_path
-    %li.toggle-topbar.menu-icon
-      %a{:href => "#"}
-        %span Menu
-  %section.top-bar-section
-    %ul.left
-      %li.divider
-    %ul.right
-      %li.divider
-      %li
-        %a{:href => "#"} About
-      %li.divider
-      %li.has-dropdown
-        %a{:href => "#"} SignIn/SignUp
-        %ul.dropdown
-          - if user_signed_in?
+.top_bar_with_links
+  %nav.top-bar
+    %ul.title-area
+      %li.name
+        %h1
+          = link_to 'Dns Journal', home_index_path
+      %li.toggle-topbar.menu-icon
+        %a{:href => "#"}
+          %span Menu
+    %section.top-bar-section
+      %ul.left
+        %li.divider
+      %ul.right
+        %li.divider
+        %li
+          %a{:href => "#"} About
+        %li.divider
+        %li.has-dropdown
+          %a{:href => "#"} SignIn/SignUp
+          %ul.dropdown
+            - if user_signed_in?
+              %li
+                %label
+                  = current_user.email
+              %li
+                = link_to 'Edit profile', edit_user_registration_path
+              %li
+                = link_to "Logout", destroy_user_session_path, :method => :delete, :data => { :confirm => "Are you sure?" }
+              %li
+                %label
+                  Domains (#{current_user.domains.count})
+              %li
+                = link_to 'domains', domains_path
+            - else
+              %li
+                = link_to "Sign up", new_user_registration_path
+              %li
+                = link_to "Login", new_user_session_path, :class => 'navbar-link'
             %li
-              %label
-                current_user.email
+              %label Links
             %li
-              = link_to 'Edit profile', edit_user_registration_path
+              = link_to 'RFCs', page_path('rfcs')
+            %li.divider
             %li
-              = link_to "Logout", destroy_user_session_path, :method => :delete, :data => { :confirm => "Are you sure?" }
+              %label Other
             %li
-              Managing #{current_user.domains.count} #{link_to 'domains', domains_path}
-          - else
-            %li
-              = link_to "Sign up", new_user_registration_path
-            %li
-              = link_to "Login", new_user_session_path, :class => 'navbar-link'
-          %li
-            %label Links
-          %li
-            = link_to 'RFCs', page_path('rfcs')
-          %li.divider
-          %li
-            %label Other
-          %li
-            %a{:href => "#"} Other
-          %li.divider
-          %li
-            %a{:href => "#"} See all →
+              %a{:href => "#"} Other

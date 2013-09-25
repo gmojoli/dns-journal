@@ -1,25 +1,18 @@
 = simple_form_for(@domain) do |f|
   - if @domain.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@domain.errors.count, "error")
-        prohibited this domain from being saved:
-      %ul
-        - @domain.errors.full_messages.each do |msg|
-          %li= msg
+    = render 'layouts/error_explanation', resource: @domain, name: 'domain'
   .row
     .large-8.columns
       = f.label :name
       %br
-        = f.text_field :name, :placeholder => "..."
+        = f.text_field :name, placeholder: "...", required: true
   .row
     .large-8.columns
       = f.label :note
       %br
-        = f.text_area :note, :placeholder => "..."
+        = f.text_area :note, placeholder: "..."
   .row
-    .large-4.columns
+    .large-8.columns
       .actions
-        = f.submit nil, :class => "button"
-    .large-4.columns
-      = link_to 'Back', @domain, :style => "left"
+        = f.submit nil, class: "button"
+        = link_to 'Back', @domain, class: "button right"

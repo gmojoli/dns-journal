@@ -1,12 +1,6 @@
 = simple_form_for [@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record] do |f|
   - if @resource_record.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@resource_record.errors.count, "error")
-        prohibited this resource_record from being saved:
-      %ul
-        - @resource_record.errors.full_messages.each do |msg|
-          %li= msg
+    = render 'layouts/error_explanation', resource: @resource_record, name: 'resource record'
   .field
     = f.label :name
     %br
