@@ -16,7 +16,8 @@
           %a{:href => "#"} About
         %li.divider
         %li.has-dropdown
-          %a{:href => "#"} SignIn/SignUp
+          %a{:href => "#"}
+            = current_user ? 'Menu' : 'SignIn/SignUp'
           %ul.dropdown
             - if user_signed_in?
               %li
