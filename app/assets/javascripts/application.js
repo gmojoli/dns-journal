@@ -10,15 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
-//= require turbolinks
+// require jquery.turbolinks
+// require turbolinks
 //= require_tree .
 //= require foundation
 //= require gritter
 
 $(function(){ $(document).foundation(); });
 $(function(){
-  console.log($.fn.jquery);
+  console.log(new Date().getTime() + $.fn.jquery);
 });
