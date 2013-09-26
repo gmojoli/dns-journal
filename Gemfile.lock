@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/RobinBrouwer/gritter.git
+  revision: 474fa57df2ea4a1c92de91035fd1160a3bb7a664
+  specs:
+    gritter (1.0.3)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: c323065b57277e175af21a693a115c55f98936e6
   specs:
@@ -121,7 +127,6 @@ GEM
       activerecord (~> 4.0.0)
     gherkin (2.12.1)
       multi_json (~> 1.3)
-    gritter (1.0.3)
     guard (1.8.3)
       formatador (>= 0.2.4)
       listen (~> 1.3)
@@ -315,7 +320,7 @@ DEPENDENCIES
   ffaker
   foundation-icons-sass-rails!
   friendly_id (= 5.0.0.beta4)
-  gritter
+  gritter!
   guard-livereload
   guard-rails
   guard-rspec

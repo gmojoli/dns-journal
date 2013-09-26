@@ -58,7 +58,7 @@ gem 'html2haml'
 # gem 'compass-rails' #, github: 'milgner/compass-rails', branch: 'rails4'
 gem 'zurb-foundation' #, '~> 4.0.0'
 
-gem 'devise', :github => 'plataformatec/devise'#, :branch => 'rails4'
+gem 'devise', github: 'plataformatec/devise'#, :branch => 'rails4'
 
 gem 'cancan'
 
@@ -92,7 +92,7 @@ group :darwin do
   gem 'rb-fsevent', :require => false
 end
 
-gem 'rails_admin', :github => 'sferik/rails_admin'
+gem 'rails_admin', github: 'sferik/rails_admin'
 
 gem 'high_voltage'
 
@@ -100,4 +100,4 @@ gem 'friendly_id', '5.0.0.beta4' # Note: You MUST use 5.0.0 or greater for Rails
 
 gem 'rails_12factor', group: :production
 
-gem 'gritter'
+gem 'gritter', github: 'RobinBrouwer/gritter'
