@@ -14,6 +14,7 @@ class DomainsController < ApplicationController
   # GET /domains.json
   def index
     @domains = current_user.domains || []
+    gflash success: "welcome"
   end
 
   # GET /domains/1
@@ -64,7 +65,10 @@ class DomainsController < ApplicationController
   def destroy
     @domain.destroy
     respond_to do |format|
-      format.html { redirect_to domains_url }
+      format.html do
+        gflash success: 'Deleted'
+        redirect_to domains_url, notice: 'Domain deleted.'
+      end
       format.json { head :no_content }
     end
   end
