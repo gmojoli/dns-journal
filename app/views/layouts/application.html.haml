@@ -11,9 +11,10 @@
     / Uncomment to make IE8 render like IE7
     / <meta http-equiv="X-UA-Compatible" content="IE=7" />
     / Set the viewport width to device width for mobile
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %title= title; content_for?(:title) ? yield(:title) : "Untitled"
     = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
     = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
   %body
@@ -24,6 +25,7 @@
         .large-8.columns
           = yield
         .large-3.offset-large-1.columns.side_panel
+          = gflash
           = render 'layouts/side_panel'
       .push
     .footer
