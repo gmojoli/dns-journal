@@ -14,7 +14,6 @@ class DomainsController < ApplicationController
   # GET /domains.json
   def index
     @domains = current_user.domains || []
-    gflash success: "welcome"
   end
 
   # GET /domains/1
