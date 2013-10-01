@@ -22,6 +22,6 @@ module DnsJournal
 
   config.assets.initialize_on_precompile = false
 
-  DnsJournal::Application::VERSION = '0.3.0'
+  DnsJournal::Application::VERSION = '0.3.1'
   end
 end
