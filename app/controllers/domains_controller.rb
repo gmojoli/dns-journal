@@ -8,8 +8,6 @@ class DomainsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
-  VERSION = '0.3.0'
-
   # GET /domains
   # GET /domains.json
   def index
@@ -92,7 +90,7 @@ class DomainsController < ApplicationController
       if dns_zone
         format.html do
           begin
-            file_content = ZoneFileGenerator.generate_file_content(dns_zone, VERSION)
+            file_content = ZoneFileGenerator.generate_file_content(dns_zone, DnsJournal::Application::VERSION)
             send_data( file_content, :filename => "#{@domain.name}.txt" )
             flash[:notice] = 'File exported'
           rescue Exception => e
