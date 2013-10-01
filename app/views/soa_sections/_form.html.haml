@@ -1,18 +1,11 @@
 = simple_form_for [@dns_zone.domain, @dns_zone, @soa_section] do |f|
   - if @soa_section && @soa_section.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@soa_section.errors.count, "error")
-        prohibited this soa_section from being saved:
-      %ul
-        - @soa_section.errors.full_messages.each do |msg|
-          %li= msg
-
+    = render 'layouts/error_explanation', resource: @soa_section, name: 'soa section'
   .row
     .large-6.columns
       .field
         = f.label :mname, 'MNAME'
-        = f.text_field :mname
+        = f.text_field :mname, required: true
     .large-6.columns
       .soa_explain_panel
         .panel The master dns server for the zone
@@ -20,7 +13,7 @@
     .large-6.columns
       .field
         = f.label :rname, 'RNAME'
-        = f.text_field :rname
+        = f.text_field :rname, required: true
     .large-6.columns
       .soa_explain_panel
         .panel An email address for someone responsible for the domain (with the @ replaced with a .)

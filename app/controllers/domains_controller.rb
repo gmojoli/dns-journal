@@ -8,8 +8,6 @@ class DomainsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource only: [:show, :edit, :update, :destroy, :export_zone]
 
-  VERSION = '0.3.0'
-
   # GET /domains
   # GET /domains.json
   def index
@@ -34,7 +32,6 @@ class DomainsController < ApplicationController
   # POST /domains.json
   def create
     @domain = Domain.new(domain_params.merge({:user_id => current_user.id}))
-    # current_user.domains << @domain.user_id = current_user.id
     respond_to do |format|
       if @domain.save
         format.html { redirect_to @domain, notice: 'Domain was successfully created.' }
@@ -65,7 +62,10 @@ class DomainsController < ApplicationController
   def destroy
     @domain.destroy
     respond_to do |format|
-      format.html { redirect_to domains_url }
+      format.html do
+        gflash success: 'Deleted'
+        redirect_to domains_url, notice: 'Domain deleted.'
+      end
       format.json { head :no_content }
     end
   end
@@ -90,7 +90,7 @@ class DomainsController < ApplicationController
       if dns_zone
         format.html do
           begin
-            file_content = ZoneFileGenerator.generate_file_content(dns_zone, VERSION)
+            file_content = ZoneFileGenerator.generate_file_content(dns_zone, DnsJournal::Application::VERSION)
             send_data( file_content, :filename => "#{@domain.name}.txt" )
             flash[:notice] = 'File exported'
           rescue Exception => e

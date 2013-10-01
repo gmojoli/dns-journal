@@ -8,3 +8,11 @@
 ['registered', 'banned', 'moderator', 'admin', 'user', 'guest'].each do |role|
   Role.find_or_create_by_name role
 end
+
+admin = User.create(
+    :name => "admin",
+    :email => "admin@admin.com",
+    :password => "password",
+    :password_confirmation => "password"
+)
+admin.roles << Role.where(name: 'admin')

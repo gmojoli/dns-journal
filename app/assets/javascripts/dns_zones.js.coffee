@@ -22,5 +22,4 @@ hide = (event)->
   $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
 
 $(document).on 'ready page:load', ->
-  console.log 'page loaded'
-  # $(document).on 'click', '#hide_rr_section', hide
+  $(document).on 'click', '#hide_rr_section', hide

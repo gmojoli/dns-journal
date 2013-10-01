@@ -1,0 +1,11 @@
+.row
+  .large-8.columns
+    #error_explanation
+      .title
+        = pluralize(resource.errors.count, "error")
+        in this
+        = name
+      .messages
+        %ul
+          - resource.errors.full_messages.each do |msg|
+            %li= msg
