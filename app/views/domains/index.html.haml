@@ -4,6 +4,10 @@
   - @domains.each do |domain|
     %li
       = link_to "#{domain.name}", domain
+      - if domain.current_dns_zone
+        using
+        = link_to "#{domain.dns_zone.origin}", domain_dns_zone_path(domain,domain.current_dns_zone)
+        version #{domain.dns_zone.version}
       = precede ' | ' do
         = link_to domain, method: :delete, data: { confirm: 'Are you sure?' } do
           %i{class: "fi-trash"}
