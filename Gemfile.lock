@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: c323065b57277e175af21a693a115c55f98936e6
+  revision: 93f59dd63a8c56fc3393e5d08d15651ef110cdc1
   specs:
     devise (3.1.0)
       bcrypt-ruby (~> 3.0)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 6aed4e4d85cccd8a575b14ecbc03b467c3d05a5c
+  revision: 9a4d1ba9b8eef7a02e1b28266028b5977dc08a5f
   specs:
     rails_admin (0.5.0)
       bootstrap-sass (~> 2.3)
@@ -112,13 +112,13 @@ GEM
       http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.0.1)
+    execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    ffaker (1.18.0)
+    ffaker (1.19.0)
     ffi (1.9.0)
     font-awesome-rails (3.2.1.3)
       railties (>= 3.2, < 5.0)
@@ -253,7 +253,7 @@ GEM
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
     safe_yaml (0.9.7)
-    sass (3.2.10)
+    sass (3.2.11)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
