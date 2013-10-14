@@ -9,6 +9,8 @@
   - else
     None selected
 %fieldset#domain_dns_zones
+  %legend
+    DNS Zone
   - if @domain.dns_zones.present?
     .dns_zones
       %table

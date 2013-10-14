@@ -17,14 +17,15 @@
         %li.divider
         %li.has-dropdown
           %a{:href => "#"}
-            = current_user ? 'Menu' : 'SignIn/SignUp'
+            = user_signed_in? ? 'Menu' : 'SignIn/SignUp'
           %ul.dropdown
             - if user_signed_in?
               %li
-                %label
-                  = current_user.email
+                %label Account
               %li
                 = link_to 'Edit profile', edit_user_registration_path
+              %li
+                = link_to "Logout", destroy_user_session_path, :method => :delete, :data => { :confirm => "Are you sure?" }
               %li
                 %label
                   Domains (#{current_user.domains.count})
@@ -40,7 +41,3 @@
             %li
               = link_to 'RFCs', page_path('rfcs')
             %li.divider
-            %li
-              %label Other
-            %li
-              = link_to "Logout", destroy_user_session_path, :method => :delete, :data => { :confirm => "Are you sure?" }
