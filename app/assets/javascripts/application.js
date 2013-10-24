@@ -14,8 +14,6 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require rails.validations
-//= require rails.validations.simple_form
 //= require turbolinks
 //= require foundation
 //= require gritter
