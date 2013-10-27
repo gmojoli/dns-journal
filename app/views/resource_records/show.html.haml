@@ -13,13 +13,16 @@
   = @resource_record.rfc
 %p
   %strong Description:
-  = @resource_record.description
+  .panel
+    = @resource_record.description
 %p
-  %strong Details:
-  %p
-    = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
-  %p
-    = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
+  %strong
+    Details:
+    .panel
+      %p
+        = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
+      %p
+        = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
 = link_to 'Edit', edit_domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record)
 |
 \#{link_to 'Back', domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone)}
