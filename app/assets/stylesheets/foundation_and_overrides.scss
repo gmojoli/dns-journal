@@ -1234,7 +1234,7 @@ $default-float: left;
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+// $topbar-bg: #000;
 
 // Height and margin
 
@@ -1299,3 +1299,8 @@ $default-float: left;
 // Sticky Class
 
 // $topbar-sticky-class: ".sticky";
+
+$input-focus-border-color: #2ba6cb;
+
+@import 'foundation';
+@import 'foundation-icons';
