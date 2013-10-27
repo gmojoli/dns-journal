@@ -74,7 +74,7 @@ group :development, :test do
   gem "pry"
   gem "ffaker"
   gem 'factory_girl_rails'
-  gem 'database_cleaner', '1.0.1'
+  gem 'database_cleaner'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload'
