@@ -23,6 +23,10 @@ html, body {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    height: 28px;
+  }
+  table{
+    width: 100%;
   }
 }
 
@@ -84,21 +88,5 @@ p.alert {
       margin-left: 15px;
       list-style: square;
     }
-  }
-}
-
-.side_panel{
-  text-align: center;
-}
-
-$my_blue: #2ba6cb;
-
-.top-bar{
-  background: black;
-  .top-bar-section .dropdown li label{
-    background: black;
-  }
-  li a:not(.button){
-    background: black;
   }
 }
