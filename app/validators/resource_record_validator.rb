@@ -2,13 +2,6 @@ require 'fqdn_validator'
 
 class ResourceRecordValidator < ActiveModel::Validator
 
-  # def validate_each(record, attribute, value)
-  #   record.errors[attribute] << '' unless ...
-  # end
-
-  # record.errors[:base] << "Resource Record not valid!"
-  # record.errors[:value] << "not valid"
-
   def validate(record)
     if record.dns_zone
       case record.resource_type
@@ -34,7 +27,6 @@ class ResourceRecordValidator < ActiveModel::Validator
         record.errors[:value] << "MX must be a valid FQDN (mx.hostname.com)" unless FqdnValidator.validate_fqdn(record.value)
         record.errors[:value] << "MX and NS records must never point to a CNAME alias (RFC 2181 section 10.3)." unless record.dns_zone.resource_records.select{ |rr| rr.resource_type == 'CNAME' && rr.value == record.value}.empty?
         record.errors[:option] << "Mail Exchanger must define a priority value (option field)." unless record.option.present?
-        record.errors[:option] << "Mail Exchanger must define a priority value (option field)." unless (Integer(record.option) rescue nil)
       when 'PTR'
         # last-IP-digit IN PTR FQDN-of-system
         record.errors[:name] << "an PTR name must be a number {3}" unless record.name =~ /^([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])$/ # 0 or 000..255
