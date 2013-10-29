@@ -1,6 +1,6 @@
 class ResourceRecordsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:resource_record_description]
   load_and_authorize_resource
 
   # GET /resource_records/1
@@ -62,6 +62,10 @@ class ResourceRecordsController < ApplicationController
       format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone) }
       format.json { head :no_content }
     end
+  end
+
+  def resource_record_description
+    respond_with ResourceRecord.definitions.fetch(params[:description]){|key| 'key not found' }
   end
 
   private
