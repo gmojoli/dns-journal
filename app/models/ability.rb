@@ -11,12 +11,12 @@ class Ability
     #     can :read, :all
     #   end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
-    # The second argument is the resource the user can perform the action on. 
+    # The second argument is the resource the user can perform the action on.
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #
@@ -38,12 +38,11 @@ class Ability
       can :crud, Domain, :user_id => user.id
       can :select_dns_zone, Domain, :user_id => user.id
       can :export_zone, Domain, :user_id => user.id
-      
-      # can :crud DnsZone, :domain => { :user_id => user.id }
 
       can :crud, DnsZone, :user_id => user.id
       can :crud, SoaSection, :user_id => user.id
       can :crud, ResourceRecord, :user_id => user.id
+      can :resource_record_description, ResourceRecord
     end
-  end  
+  end
 end
