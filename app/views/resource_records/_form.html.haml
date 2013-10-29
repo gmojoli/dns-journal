@@ -1,34 +1,37 @@
 = simple_form_for [@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record] do |f|
   - if @resource_record.errors.any?
     = render 'layouts/error_explanation', resource: @resource_record, name: 'resource record'
-  .field
-    .row
-      .large-4.columns
-        = f.label :name
-      .large-8.columns
-        = f.text_field :name
+  .rr_name
+    .field
+      .row
+        .large-4.columns
+          = f.label :name
+        .large-8.columns
+          = f.text_field :name
   .field
     .row
       .large-4.columns
         = f.label :resource_type
       .large-8.columns
-        = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true})
+        = f.input :resource_type, collection: ResourceRecord.available_resource_types.keys, include_blank: true, required: true, input_html: {:data => {:purpose => "show-types"}}, label: false
   .field
     .row
       .large-4.columns
         = f.label :value
       .large-8.columns
         = f.text_field :value
-  .field
-    .row
-      .large-4.columns
-        = f.label :option
-      .large-8.columns
-        = f.number_field :option
-  .field
-    .row
-      .panel
-        = @resource_record.description
+  .rr_option
+    .field
+      .row
+        .large-4.columns
+          = f.label :option
+        .large-8.columns
+          = f.number_field :option
+  .rr_description
+    .field
+      .row
+        .panel
+          = @resource_record.description
   .actions
     .row
       = f.submit 'Save', :class => "button"
