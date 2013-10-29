@@ -7,7 +7,7 @@ class ResourceRecord < ActiveRecord::Base
   validates :dns_zone, presence: true
   validates_with ResourceRecordValidator
 
-  before_save ->{ self.description = self.class.definitions[self.resource_type].join(', ') if self.description.blank? }
+  before_validation ->{ self.description = self.class.definitions[self.resource_type].join(', ') unless self.description.present? && self.resource_type.blank? }
 
   class << self
 
