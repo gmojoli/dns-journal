@@ -25,7 +25,9 @@ $(document).on 'ready page:load', ->
 
 $(document).on "change", "[data-purpose='show-types']", (e) ->
   console.log $("[data-purpose='show-types']").val()
-  $.ajax("/resource_record_description/" + $("[data-purpose='show-types']").val())
+  $.ajax("/resource_record_description/" + $("[data-purpose='show-types']").val()).done (response) ->
+    console.log "the response is: " + response
+    $('.panel').first().html(response.join(', '))
 
 # # routes.rb
 # resources :users do
