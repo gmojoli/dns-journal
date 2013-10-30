@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.full_centered{
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .side_panel{
   text-align: center;
@@ -14,7 +18,7 @@
 .top_bar_with_links {
   margin-bottom: 40px;
   .top-bar-section ul li > a {
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 

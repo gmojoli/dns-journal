@@ -294,6 +294,8 @@ $default-float: left;
 // $input-focus-bg-color: darken(#fff, 2%);
 // $input-border-color: darken(#fff, 20%);
 // $input-focus-border-color: darken(#fff, 40%);
+$input-focus-border-color: #2ba6cb;
+
 // $input-border-style: solid;
 // $input-border-width: 1px;
 // $input-disabled-bg: #ddd;
@@ -1239,6 +1241,7 @@ $default-float: left;
 // Height and margin
 
 // $topbar-height: 45px;
+$topbar-height: 35px;
 // $topbar-margin-bottom: emCalc(30);
 
 // Control Input height for top bar
@@ -1299,8 +1302,6 @@ $default-float: left;
 // Sticky Class
 
 // $topbar-sticky-class: ".sticky";
-
-$input-focus-border-color: #2ba6cb;
 
 @import 'foundation';
 @import 'foundation-icons';
