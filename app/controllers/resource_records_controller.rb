@@ -65,7 +65,7 @@ class ResourceRecordsController < ApplicationController
   end
 
   def resource_record_description
-    respond_with ResourceRecord.definitions.fetch(params[:description]){|key| 'key not found' }
+    render json: ResourceRecord.definitions.fetch(params[:type]){|key| 'key not found' }
   end
 
   private
