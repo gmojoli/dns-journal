@@ -15,28 +15,21 @@ $(document).on "change", "[data-purpose='show-types']", (e) ->
   else
     $(".rr_name").css "display", "block"
 
-hide = (event)->
-  event.preventDefault() # Prevent link from following its href
-  $(".rr_section_form").toggle()
-  $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
+# hide = (event)->
+#   event.preventDefault() # Prevent link from following its href
+#   $(".rr_section_form").toggle()
+#   $('#hide_rr_section').html((if ($('#hide_rr_section').html() is "Show more") then "Show less" else "Show more"))
 
-$(document).on 'ready page:load', ->
-  $(document).on 'click', '#hide_rr_section', hide
+# $(document).on 'ready page:load', ->
+#   $(document).on 'click', '#hide_rr_section', hide
 
 $(document).on "change", "[data-purpose='show-types']", (e) ->
   console.log $("[data-purpose='show-types']").val()
   $.ajax("/resource_record_description/" + $("[data-purpose='show-types']").val()).done (response) ->
-    console.log "the response is: " + response
-    $('.panel').first().html(response.join(', '))
-
-# # routes.rb
-# resources :users do
-#   get :render_read, on: :collection
-#   # or you may prefer to call this route on: :member
-# end
-
-# # users_controller.rb
-# def render_read
-#   @current_user.render_read
-#   # I made this part up, do whatever necessary to find the needed user here
-# end
+    $('.panel').first().empty()
+    $(response).each (index) ->
+      $('<p>', {
+       class: '',
+       text: response[index],
+      }).appendTo($('.panel').first())
+  return
