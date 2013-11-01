@@ -12,6 +12,7 @@ class ResourceRecordValidator < ActiveModel::Validator
       when 'CNAME'
         # alias-name IN CNAME real-name
         record.errors[:value] << "CNAME records must always be pointed to another domain name, never to an IP-address." if record.value =~ /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/
+        record.errors[:value] << "CNAME records must always be pointed to another domain name, never to an IP-address." unless FqdnValidator.validate_fqdn(record.value)
         record.errors[:value] << "CNAME records should not contain other resource record types (such as A, NS, MX, etc.)" unless record.dns_zone.resource_records.select{ |rr| rr.value == record.value && (record.id && rr.id != record.id) }.empty?
       when 'NS'
         # IN NS nameserver-name
