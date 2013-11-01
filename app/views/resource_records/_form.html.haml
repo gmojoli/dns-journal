@@ -31,7 +31,10 @@
     .field
       .row
         .panel
-          = @resource_record.description
+          %p
+            = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
+          %p
+            = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
   .actions
     .row
       = f.submit 'Save', :class => "button"

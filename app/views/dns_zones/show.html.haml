@@ -5,10 +5,10 @@
         Domain: #{link_to "#{@dns_zone.domain.name}", domain_path(@dns_zone.domain)}
       %p.little_info
         Created:
-        = @dns_zone.domain.created_at.strftime('%d.%m.%y %H:%M')
+        = @dns_zone.domain.created_at.strftime('%d.%m.%Y %H:%M')
         ;
         Last update:
-        = @dns_zone.domain.updated_at.strftime('%d.%m.%y %H:%M')
+        = @dns_zone.domain.updated_at.strftime('%d.%m.%Y %H:%M')
 
   .row
     %fieldset
@@ -23,10 +23,12 @@
             %br
             ; Admin email: #{@dns_zone.admin_email}
       .large-4.columns
-        %ul.button-group{:style => "margin-top: 10px;"}
+        %ul.button-group
           %li
             = link_to edit_domain_dns_zone_path(@dns_zone.domain, @dns_zone) do
-              %i{class: "fi-pencil"} edit
+              %i{class: "fi-pencil"}
+                %span
+                  edit
 .row
   #soa_section
     %fieldset
@@ -36,10 +38,12 @@
           = render 'code_tag', dns_zone: @dns_zone
         %p
           = link_to edit_domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section) do
-            %i{class: "fi-pencil"} edit
+            %i{class: "fi-pencil"}
+              %span edit
           = precede ' | ' do
             = link_to domain_dns_zone_soa_section_path(@dns_zone.domain, @dns_zone, @dns_zone.soa_section), method: :delete, data: { confirm: 'Are you sure?' } do
-              %i{class: "fi-trash"} delete
+              %i{class: "fi-trash"}
+                %span delete
       - else
         = render 'soa_sections/form'
   .rr_section
