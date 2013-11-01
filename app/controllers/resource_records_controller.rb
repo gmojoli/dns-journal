@@ -48,7 +48,8 @@ class ResourceRecordsController < ApplicationController
         format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), notice: 'Resource record was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to edit_domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        # format.html { redirect_to edit_domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        format.html { render action: :new, alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
         format.json { render json: @resource_record.errors, status: :unprocessable_entity }
       end
     end
