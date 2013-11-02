@@ -19,11 +19,13 @@ html, body {
   fieldset legend{
     background: transparent;
   }
-  input{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    height: 28px;
+  .wrapper{
+    input{
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      height: 25px;
+    }
   }
   table{
     width: 100%;
@@ -97,4 +99,8 @@ p.alert {
       list-style: square;
     }
   }
+}
+
+.centered_content{
+  text-align: center;
 }
