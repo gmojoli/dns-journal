@@ -16,7 +16,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
-//= require gritter
 //= require_tree .
 
 $(function(){
