@@ -329,7 +329,7 @@ DEPENDENCIES
   pry
   pry-nav
   pry-rails
-  rails (~> 4.0.0)
+  rails
   rails_12factor
   rails_admin!
   rb-fsevent
