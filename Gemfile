@@ -91,4 +91,3 @@ end
 gem 'high_voltage'
 gem 'friendly_id', '5.0.0.beta4' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'rails_12factor', group: :production
-gem 'gritter', github: 'RobinBrouwer/gritter'

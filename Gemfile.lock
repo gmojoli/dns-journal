@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/RobinBrouwer/gritter.git
-  revision: 474fa57df2ea4a1c92de91035fd1160a3bb7a664
-  specs:
-    gritter (1.0.3)
-
-GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 9eb0768cb9a416a08326d91db3063c64238ee333
   specs:
@@ -321,7 +315,6 @@ DEPENDENCIES
   ffaker
   foundation-icons-sass-rails!
   friendly_id (= 5.0.0.beta4)
-  gritter!
   guard-livereload
   guard-rails
   guard-rspec
