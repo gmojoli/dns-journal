@@ -4,5 +4,6 @@
       = f.label :origin, "$ORIGIN:", class: 'right inline'
     .large-10.columns
       = f.text_field :origin, required: 'true'
-  %p
-    = f.submit "create Dns Zone", class: 'button'
+  .row
+    .large-12.columns.centered_content
+      = f.submit "create Dns Zone", class: 'button'

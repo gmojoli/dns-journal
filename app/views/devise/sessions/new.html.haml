@@ -1,16 +1,16 @@
 %h2 Sign in
-%hr/
+%hr
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .row
     .large-3.columns
       = f.label :email, class: "right inline"
     .large-9.columns
-      = f.email_field :email, :autofocus => true
+      = f.email_field :email, autofocus: true
   .row
     .large-3.columns
       = f.label :password, class: "right inline"
     .large-9.columns
-      = f.password_field :password
+      = f.password_field :password, required: true
   .row
     .large-3.columns
       = f.label :remember_me, class: "right inline"
