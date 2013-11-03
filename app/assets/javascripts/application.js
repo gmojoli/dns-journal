@@ -12,14 +12,12 @@
 //
 
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-// require jquery.turbolinks
-// require turbolinks
-//= require_tree .
+//= require turbolinks
 //= require foundation
-//= require gritter
+//= require_tree .
 
-$(function(){ $(document).foundation(); });
 $(function(){
-  console.log(new Date().getTime() + $.fn.jquery);
+  $(document).foundation();
 });

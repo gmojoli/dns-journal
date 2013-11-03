@@ -63,7 +63,6 @@ class DomainsController < ApplicationController
     @domain.destroy
     respond_to do |format|
       format.html do
-        gflash success: 'Deleted'
         redirect_to domains_url, notice: 'Domain deleted.'
       end
       format.json { head :no_content }

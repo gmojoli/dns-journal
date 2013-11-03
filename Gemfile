@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '  ~> 4.0.0'
+gem 'rails'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -53,15 +53,11 @@ gem 'rb-readline', '~>0.5.0', require: 'readline'
 
 gem 'haml'
 gem 'html2haml'
+gem 'zurb-foundation'
 
-# http://foundation.zurb.com/docs/
-# gem 'compass-rails' #, github: 'milgner/compass-rails', branch: 'rails4'
-gem 'zurb-foundation' #, '~> 4.0.0'
-
-gem 'devise', github: 'plataformatec/devise'#, :branch => 'rails4'
-
+gem 'rails_admin', github: 'sferik/rails_admin'
+gem 'devise', github: 'plataformatec/devise'
 gem 'cancan'
-
 gem 'simple_form'
 
 group :development do
@@ -78,7 +74,7 @@ group :development, :test do
   gem "pry"
   gem "ffaker"
   gem 'factory_girl_rails'
-  gem 'database_cleaner', '1.0.1'
+  gem 'database_cleaner'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload'
@@ -92,12 +88,6 @@ group :darwin do
   gem 'rb-fsevent', :require => false
 end
 
-gem 'rails_admin', github: 'sferik/rails_admin'
-
 gem 'high_voltage'
-
 gem 'friendly_id', '5.0.0.beta4' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
-
 gem 'rails_12factor', group: :production
-
-gem 'gritter', github: 'RobinBrouwer/gritter'

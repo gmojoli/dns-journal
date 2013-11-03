@@ -1,12 +1,12 @@
-= simple_form_for [@dns_zone.domain, @dns_zone, @resource_record = ResourceRecord.new] do |f|
+= simple_form_for [@dns_zone.domain, @dns_zone, @resource_record ||= ResourceRecord.new] do |f|
   - if @resource_record.errors.any?
     = render 'layouts/error_explanation', resource: @resource_record, name: 'resource record'
   .row
     .large-3.columns
       = f.label :resource_type, class: "right inline"
     .large-3.columns.left
-      #select_rr_type
-        = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true}, {:data => {:purpose => "show-types"}})
+      .select_rr_type
+        = f.input :resource_type, collection: ResourceRecord.available_resource_types.keys, include_blank: true, required: true, input_html: {:data => {:purpose => "show-types"}}, label: false
     .rr_option
       .large-3.columns
         %span.has-tip{"data-tooltip" => "", :title => "an MX require a priority value"}
@@ -24,11 +24,6 @@
       = f.label :value, class: "right inline"
     .large-9.columns
       = f.text_field :value
-  .row
-    .large-3.columns
-      = f.label :description, class: "right inline"
-    .large-9.columns
-      = f.text_area :description
   .row
     .large-3.columns.large-offset-3
       = f.submit "Save", :class => "button"

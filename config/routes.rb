@@ -11,9 +11,11 @@ DnsJournal::Application.routes.draw do
   resources :domains do
     resources :dns_zones, :only => [:new, :create, :destroy, :show, :edit, :update] do
       resources :soa_sections, :only => [:edit, :create, :update, :destroy]
-      resources :resource_records, :only => [:show, :edit, :create, :update, :destroy]
+      resources :resource_records, :only => [:new, :show, :edit, :create, :update, :destroy]
     end
   end
+
+  get 'resource_record_description/:type' => 'resource_records#resource_record_description', as: :resource_record_description
 
   get '/domains/:id/export/:dns_zone' => 'domains#export_zone', as: :export
   get '/domains/:id/select/:dns_zone' => 'domains#select_dns_zone', as: :select

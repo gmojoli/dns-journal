@@ -15,17 +15,3 @@
   font-weight: bold !important;
 }
 
-@mixin red_button {
-  @include button-base;
-  $button-font-color: white !important;
-  $button-font-weight: normal;
-  @include basic_font;
-  @include button($padding, $bg, $radius, $full-width, $disabled, $is-input);
-  padding: emCalc(7px) !important;
-  @include single-transition;
-  @include inset-shadow($active);
-  &:hover {
-    color: darken(white, 15%) !important;
-    background: darken($bg, 15%) !important;
-  }
-}

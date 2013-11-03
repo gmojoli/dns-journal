@@ -42,8 +42,8 @@ RailsAdmin.config do |config|
   # config.authorize_with :cancan
 
   config.authorize_with do
-    unless current_user.admin?
-      flash[:alert] = "No!"
+    unless current_user && current_user.admin?
+      flash[:alert] = "Only for admin."
       redirect_to main_app.home_index_path
     end
   end

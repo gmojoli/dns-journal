@@ -1,27 +1,43 @@
 = simple_form_for [@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record] do |f|
   - if @resource_record.errors.any?
     = render 'layouts/error_explanation', resource: @resource_record, name: 'resource record'
+  .rr_name
+    .field
+      .row
+        .large-4.columns
+          = f.label :name
+        .large-8.columns
+          = f.text_field :name
   .field
-    = f.label :name
-    %br
-      = f.number_field :name
+    .row
+      .large-4.columns
+        = f.label :resource_type
+      .large-8.columns
+        = f.input :resource_type, collection: ResourceRecord.available_resource_types.keys, include_blank: true, required: true, input_html: {:data => {:purpose => "show-types"}}, label: false
   .field
-    = f.label :resource_type
-    %br
-      = select(:resource_record, :resource_type, ResourceRecord.available_resource_types.keys, {:include_blank => true})
-  .field
-    = f.label :value
-    %br
-      = f.number_field :value
-  .field
-    = f.label :option
-    %br
-      = f.number_field :option
-  .field
-    = f.label :description
-    %br
-      = f.text_area :description
+    .row
+      .large-4.columns
+        = f.label :value
+      .large-8.columns
+        = f.text_field :value
+  .rr_option
+    .field
+      .row
+        .large-4.columns
+          = f.label :option
+        .large-8.columns
+          = f.number_field :option
+  .rr_description
+    .field
+      .row
+        .panel
+          .rr_description_panel
+            %p
+              = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
+            %p
+              = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
   .actions
-    = f.submit nil
-    = precede ' | ' do
-      = link_to 'Back', domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record)
+    .row
+      = f.submit 'Save', :class => "button"
+      .right
+        = link_to 'Back', domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), class: 'button'

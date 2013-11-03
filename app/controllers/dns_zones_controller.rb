@@ -48,7 +48,6 @@ class DnsZonesController < ApplicationController
       if (zone.update(dns_zone_params.merge( {:version => @dns_zone.new_version} ))) && zone.valid?
         zone.save!
         @dns_zone.domain.dns_zones << zone
-        @dns_zone.domain.save
         format.html { redirect_to @dns_zone.domain, notice: 'Dns zone was successfully updated.' }
         format.json { head :no_content }
       else
@@ -66,7 +65,8 @@ class DnsZonesController < ApplicationController
   # DELETE /dns_zones/1.json
   def destroy
     respond_to do |format|
-      if @dns_zone.domain.dns_zone != @dns_zone && @dns_zone.destroy
+      # if @dns_zone.domain.dns_zone != @dns_zone && @dns_zone.destroy
+      if @dns_zone.destroy
         format.html { redirect_to @dns_zone.domain, notice: 'Dns zone was successfully deleted.'  }
         format.json { head :no_content }
       else

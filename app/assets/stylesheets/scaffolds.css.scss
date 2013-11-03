@@ -19,10 +19,24 @@ html, body {
   fieldset legend{
     background: transparent;
   }
-  input{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  .wrapper{
+    input{
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      height: 25px;
+    }
+  }
+  table{
+    width: 100%;
+  }
+  i{
+    margin-left: 3px;
+    margin-right: 3px;
+    span{
+      margin-left: 3px;
+      margin-right: 3px;
+    }
   }
 }
 
@@ -87,18 +101,14 @@ p.alert {
   }
 }
 
-.side_panel{
+.centered_content{
   text-align: center;
 }
 
-$my_blue: #2ba6cb;
+.underlined{
+  text-decoration: underline;
+}
 
-.top-bar{
-  background: black;
-  .top-bar-section .dropdown li label{
-    background: black;
-  }
-  li a:not(.button){
-    background: black;
-  }
+.alert-box {
+  min-width: 180px;
 }

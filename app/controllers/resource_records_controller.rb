@@ -1,12 +1,19 @@
 class ResourceRecordsController < ApplicationController
 
-  # before_action :set_resource_record, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:resource_record_description]
   load_and_authorize_resource
 
   # GET /resource_records/1
   # GET /resource_records/1.json
   def show
+  end
+
+  # GET /resource_records/new
+  def new
+    @domain = Domain.friendly.find(params[:domain_id])
+    @dns_zone = DnsZone.find(params[:dns_zone_id])
+    @resource_record ||= ResourceRecord.new
+    @resource_record.dns_zone = @dns_zone
   end
 
   # GET /resource_records/1/edit
@@ -17,14 +24,13 @@ class ResourceRecordsController < ApplicationController
   # POST /resource_records.json
   def create
     @dns_zone = DnsZone.find(params[:dns_zone_id])
-    @resource_record = ResourceRecord.new(resource_record_params.merge({:user_id => current_user.id}))
-    @dns_zone.resource_records << @resource_record
+    @resource_record = ResourceRecord.new(resource_record_params.merge({ user_id: current_user.id, dns_zone_id: @dns_zone.id }))
     respond_to do |format|
       if @resource_record.save
         format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), notice: 'Resource record was successfully created.' }
         format.json { render action: 'show', status: :created, location: @resource_record }
       else
-        format.html { redirect_to domain_dns_zone_path(@dns_zone.domain, @dns_zone), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        format.html { render action: :new }
         format.json { render json: @resource_record.errors, status: :unprocessable_entity }
       end
     end
@@ -38,7 +44,7 @@ class ResourceRecordsController < ApplicationController
         format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), notice: 'Resource record was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
+        format.html { render action: :new, alert: "Resource Record validation failed: #{@resource_record.errors.messages}" }
         format.json { render json: @resource_record.errors, status: :unprocessable_entity }
       end
     end
@@ -52,6 +58,10 @@ class ResourceRecordsController < ApplicationController
       format.html { redirect_to domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone) }
       format.json { head :no_content }
     end
+  end
+
+  def resource_record_description
+    render json: ResourceRecord.definitions.fetch(params[:type]){|key| 'key not found' }
   end
 
   private

@@ -1,7 +1,9 @@
 %p.navbar-text.pull-right
-  - if notice.present? || alert.present?
-    .panel
-      %p.notice
-        = notice
-      %p.alert
-        = alert
+  - if alert.present?
+    .alert-box.alert.radius{"data-alert" => ""}
+      = alert
+      %a.close{:href => "#"} &times;
+  - if notice.present?
+    .alert-box.radius{"data-alert" => ""}
+      = notice
+      %a.close{:href => "#"} &times;
