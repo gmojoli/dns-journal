@@ -31,12 +31,13 @@
     .field
       .row
         .panel
-          %p
-            = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
-          %p
-            = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
+          .rr_description_panel
+            %p
+              = ResourceRecord.definitions.fetch(@resource_record.resource_type).first
+            %p
+              = ResourceRecord.definitions.fetch(@resource_record.resource_type)[1]
   .actions
     .row
       = f.submit 'Save', :class => "button"
       .right
-        = link_to 'Back', domain_dns_zone_resource_record_path(@resource_record.dns_zone.domain, @resource_record.dns_zone, @resource_record), class: 'button'
+        = link_to 'Back', domain_dns_zone_path(@resource_record.dns_zone.domain, @resource_record.dns_zone), class: 'button'

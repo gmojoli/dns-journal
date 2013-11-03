@@ -1,6 +1,6 @@
 %p.navbar-text.pull-right
   - if alert.present?
-    .alert-box.radius{"data-alert" => ""}
+    .alert-box.alert.radius{"data-alert" => ""}
       = alert
       %a.close{:href => "#"} &times;
   - if notice.present?

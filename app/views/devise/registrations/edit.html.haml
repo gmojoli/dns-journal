@@ -1,31 +1,51 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+.row
+  %h2
+    Edit #{resource_name.to_s.humanize}
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
+  .row
+    .large-6.columns
+      = f.label :name
+      = f.text_field :name, :autocomplete => "off"
+    .large-6.columns
+      = f.label :surname
+      = f.text_field :surname
+  .row
+    .large-12.columns
+      = f.label :email
+      %br
+      = f.email_field :email, :autofocus => true
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  %div
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, :autocomplete => "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password
-  %div= f.submit "Update", :class => "button"
-%h3 Cancel my account
-%p
-  Unhappy?
-  %br
-  = link_to "Cancel my account!", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button'
+    .row
+      .large-12.columns
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .row
+    .large-12.columns
+      .wanna_change_password
+        %p.underlined Change password?
+  .show_change_password
+    .row
+      %fieldset
+        .large-12.columns
+          = f.label :password
+          %span
+            %i (leave blank if you don't want to change it)
+          = f.password_field :password, :autocomplete => "off"
+        .large-12.columns
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+  .row
+    .large-12.columns
+      = f.label :current_password
+      %i (we need your current password to confirm your changes)
+      %br/
+      = f.password_field :current_password
+  .row
+    .large-12.columns
+      = f.submit "Update", :class => "button"
+.row
+  %h3 Cancel my account
+  %p
+    Unhappy?
+    %br
+    = link_to "Cancel my account!", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button'

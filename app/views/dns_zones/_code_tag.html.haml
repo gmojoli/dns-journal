@@ -1,29 +1,29 @@
 %code
   = "#{dns_zone.soa_section.primary_domain_name} #{dns_zone.soa_section.zone_class} SOA #{dns_zone.soa_section.mname} #{dns_zone.soa_section.rname} ("
   %br
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;
   = precede " #{dns_zone.soa_section.serial_number} " do
-    &emsp;&emsp;&emsp;
+    / &emsp;&emsp;&emsp;
     = "; serial number"
   %br
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;
   = precede " #{dns_zone.soa_section.refresh} " do
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    = "; refresh after #{dns_zone.soa_section.refresh} seconds"
+    / &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    = "; refresh after #{seconds_to_readable_time dns_zone.soa_section.refresh}"
   %br
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;
   = precede " #{dns_zone.soa_section.retry} " do
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    = "; retry after #{dns_zone.soa_section.retry} seconds"
+    / &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    = "; retry after #{seconds_to_readable_time dns_zone.soa_section.retry}"
   %br
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;
   = precede " #{dns_zone.soa_section.expire} " do
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    = "; expire after #{dns_zone.soa_section.expire} seconds"
+    / &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    = "; expire after #{seconds_to_readable_time dns_zone.soa_section.expire}"
   %br
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;
   = precede " #{dns_zone.soa_section.minimum} " do
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    / &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     = "; minimum TTL"
   %br
   = ") ;"
