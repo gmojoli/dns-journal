@@ -28,6 +28,6 @@ module DnsJournal
 
     config.assets.initialize_on_precompile = false
 
-    DnsJournal::Application::VERSION = '0.3.2'
+    DnsJournal::Application::VERSION = '0.4.0'
   end
 end
