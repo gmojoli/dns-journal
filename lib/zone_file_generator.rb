@@ -1,7 +1,6 @@
 class ZoneFileGenerator
 
   class << self
-
     def generate_file_content(dns_zone, version)
       file_content = "#{header(version)}\n"
       file_content.concat "$ORIGIN #{dns_zone.origin}.\n$TTL #{dns_zone.ttl}\n"
@@ -15,6 +14,7 @@ class ZoneFileGenerator
         file_content.concat "; #{ResourceRecord.definitions.fetch(rr.resource_type)[0]}\n"
         file_content.concat "#{rr.to_code_string}\n"
       end
+      file_content
       # Tempfile.open('prefix', Rails.root.join('tmp') ) do |f|
       #   f.print file_content
       #   f.flush
