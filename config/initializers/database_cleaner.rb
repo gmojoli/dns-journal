@@ -1,6 +1,8 @@
-require 'database_cleaner'
+unless Rails.env.production?
+  require 'database_cleaner'
 
-DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :transaction
 
-# then, whenever you need to clean the DB
-# DatabaseCleaner.clean
+  # then, whenever you need to clean the DB
+  # DatabaseCleaner.clean
+end
