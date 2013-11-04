@@ -22,7 +22,7 @@
       = f.password_field :password_confirmation
   .row
     .large-3.columns
-      = f.submit "Sign up", :class => "button"
+      = f.submit "Sign up", :class => "button", data: { disable_with: 'Please wait...' }
   .row
     .large-6.columns
       = render "devise/shared/links"

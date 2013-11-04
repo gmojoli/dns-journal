@@ -14,13 +14,19 @@ class User < ActiveRecord::Base
 
   before_create :set_default_role
 
+  after_create :send_welcome_email
+
   def admin?
     roles.map(&:name).include? 'admin'
   end
 
-  private
+private
   def set_default_role
     self.roles << Role.find_by_name('user')
+  end
+
+  def send_welcome_email
+    ModelMailer.new_user_notification(self).deliver
   end
 
 end

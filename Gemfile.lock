@@ -109,10 +109,10 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.3.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     ffaker (1.20.0)
     ffi (1.9.3)
@@ -176,12 +176,16 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgun (0.7)
+      multimap
+      rest-client
     method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_test (0.0.2)
+    multimap (1.1.2)
     nested_form (0.3.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
@@ -229,6 +233,8 @@ GEM
       json (~> 1.4)
     ref (1.0.5)
     remotipart (1.2.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -325,6 +331,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+  mailgun
   pg
   pry
   pry-nav
